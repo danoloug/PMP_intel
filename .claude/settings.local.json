@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/dano/.claude/skills/**)",
+      "Read(//Users/dano/.claude/**)",
+      "Bash(python3 -m json.tool)"
+    ]
+  }
+}
