@@ -154,12 +154,12 @@ MCP servers give Claude access to external data. You configure these in `~/.clau
 
 ### Priority MCP Servers (configure in Phase 1)
 
-| MCP Server | Data It Provides | How to Get It |
-|---|---|---|
-| **Brave Search** | Web search with fresh index | `npx @modelcontextprotocol/server-brave-search` — needs Brave API key |
-| **Playwright/Puppeteer** | Dynamic page scraping (social media, Meta Ad Library) | `npx @playwright/mcp` |
-| **SQLite** | Direct database read/write from Claude | `npx @modelcontextprotocol/server-sqlite` |
-| **Filesystem** | Structured file access for HTML output | `npx @modelcontextprotocol/server-filesystem` |
+| MCP Server               | Data It Provides                                      | How to Get It                                                         |
+| ------------------------ | ----------------------------------------------------- | --------------------------------------------------------------------- |
+| **Brave Search**         | Web search with fresh index                           | `npx @modelcontextprotocol/server-brave-search` — needs Brave API key |
+| **Playwright/Puppeteer** | Dynamic page scraping (social media, Meta Ad Library) | `npx @playwright/mcp`                                                 |
+| **SQLite**               | Direct database read/write from Claude                | `npx @modelcontextprotocol/server-sqlite`                             |
+| **Filesystem**           | Structured file access for HTML output                | `npx @modelcontextprotocol/server-filesystem`                         |
 
 ### Phase 2 MCP Servers (add when you reach outreach phase)
 

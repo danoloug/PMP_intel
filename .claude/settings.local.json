@@ -3,7 +3,27 @@
     "allow": [
       "Read(//Users/dano/.claude/skills/**)",
       "Read(//Users/dano/.claude/**)",
-      "Bash(python3 -m json.tool)"
+      "Read(//Users/dano/Projects/**)",
+      "Bash(python3 -m json.tool)",
+      "mcp__pmp-sqlite__read_query",
+      "mcp__pmp-sqlite__list_tables",
+      "mcp__pmp-sqlite__describe_table",
+      "mcp__pmp-fs__read_file",
+      "mcp__pmp-fs__read_text_file",
+      "mcp__pmp-fs__read_media_file",
+      "mcp__pmp-fs__list_directory",
+      "mcp__pmp-fs__list_directory_with_sizes",
+      "mcp__pmp-fs__directory_tree",
+      "mcp__pmp-fs__search_files",
+      "mcp__pmp-fs__get_file_info",
+      "mcp__pmp-fs__list_allowed_directories",
+      "mcp__pmp-sqlite__create_table",
+      "mcp__pmp-sqlite__write_query"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "pmp-sqlite",
+    "pmp-fs",
+    "brave-search"
+  ]
 }

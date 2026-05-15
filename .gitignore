@@ -1,0 +1,8 @@
+# Contains a plaintext API key — never commit
+.mcp.json
+
+# Local SQLite database
+pmp_intel.db
+
+# macOS
+.DS_Store

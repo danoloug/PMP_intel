@@ -1,4 +1,4 @@
-# Story Gap Intel — Database Schema
+# PMP Intel — Database Schema
 # Natural language description for Claude Code CLI
 # Paste this into Claude Code to define or regenerate the SQLite database
 
@@ -6,58 +6,71 @@
 
 ## Overview
 
-The database is SQLite, stored locally at `~/Desktop/Projects/Lead_Research_Intel/sgs-intel/prospects.db`.
-All reads and writes go through `memory/queries.py` — no inline SQL anywhere else in the app.
+The database is SQLite, stored locally at
+`/Users/dano/Projects/Claude_CLI/PMP_Intel/pmp_intel.db`
+(also addressed by the `pmp-sqlite` MCP server defined in `.mcp.json`).
+
+All reads and writes go through the `pmp-db-manager` skill, which uses the
+SQLite MCP server — no other skill issues raw SQL. There is no Python
+`queries.py`; this is a markdown-orchestrated app.
+
 Every table uses an auto-incrementing integer primary key called `id`.
-All timestamps are stored as ISO 8601 strings in UTC.
+All timestamps are ISO 8601 strings in UTC (`strftime('%Y-%m-%dT%H:%M:%fZ','now')`).
+
+Scoring model: the four sub-scores (Creative / Budget / Growth / Other Day)
+come from the analyzers. The composite score (0–100) is **derived** by
+`pmp-db-manager` on write — never invented by an analyzer.
+
+CRM pipeline: `lead → in_research → contacted → active`, plus `archived`.
+Stage transitions are explicit and never skipped silently:
+- `lead → in_research` when a sweep/analysis begins
+- `in_research → contacted` when outreach is sent
+- `contacted → active` when a reply lands
 
 ---
 
 ## Table 1: prospects
 
-This is the master record for every brand being researched.
-
-One row per company. Never deleted — archive instead by setting status to "archived".
+Master record for every company. One row per company. Never deleted —
+archive instead by setting `crm_stage` to `archived`. Re-analysis updates
+the existing row (and appends new `analyses`/`reports` rows); it never
+creates a duplicate prospect.
 
 Fields:
 - id — primary key
-- company_name — the brand name as entered by the user
-- website_url — the brand's primary website
-- instagram_handle — @handle without the @, nullable
-- youtube_channel — full channel URL or handle, nullable
-- industry — free text category (e.g. "outdoor gear", "DTC skincare")
+- company_name — brand name as entered by the user (required)
+- website_url — primary website, nullable
+- instagram_handle — handle without the @, nullable
+- youtube_channel — channel URL or handle, nullable
+- industry — free text category (e.g. "acoustic guitar manufacturers")
 - revenue_estimate — text range (e.g. "$1M–$5M"), nullable
-- status — one of: "new", "researched", "contacted", "responded", "archived"
+- crm_stage — one of: "lead", "in_research", "contacted", "active", "archived"
 - outreach_stage — one of: "none", "drafted", "sent", "replied", "closed"
-- prospect_score — integer 0–100, overall score from last deep dive
-- story_gap_score — decimal 0–10, Muse framework story gap rating
-- economic_viability_score — decimal 0–10, brand film ROI viability
-- muse_people_score — decimal 0–10
-- muse_plot_score — decimal 0–10
-- muse_place_score — decimal 0–10
-- muse_purpose_score — decimal 0–10
-- notes — free text, user-editable field for personal observations
+- composite_score — integer 0–100, derived composite from last analysis
+- creative_score — decimal 0–10, Creative sub-score
+- budget_score — decimal 0–10, Budget sub-score
+- growth_score — decimal 0–10, Growth sub-score
+- other_day_score — decimal 0–10, Other Day sub-score
+- notes — free text, user-editable observations
 - created_at — timestamp when prospect was first added
-- last_researched_at — timestamp of most recent deep dive
-- app_version — the VERSION string active when last researched
-- story_logic_version — the STORY_LOGIC_VERSION string active when last researched
+- last_analyzed_at — timestamp of most recent analysis run
+- app_version — VERSION string active when last analyzed
+- scoring_logic_version — SCORING_LOGIC_VERSION active when last analyzed
 
 ---
 
 ## Table 2: raw_data_pulls
 
-Stores the raw scraped data from every fetcher agent, exactly as returned.
-Never overwritten — every run appends a new row. This lets us re-run interpreters
-without re-scraping.
-
+Raw scraped data from every fetcher, exactly as returned. Never overwritten —
+every run appends a new row, so interpreters can re-run without re-scraping.
 One row per fetcher per run.
 
 Fields:
 - id — primary key
 - prospect_id — foreign key to prospects.id
 - source — one of: "website", "youtube", "meta_ads", "instagram", "press"
-- run_id — UUID string grouping all fetchers from the same research run
-- raw_json — the complete JSON blob returned by the fetcher, stored as TEXT
+- run_id — UUID grouping all fetchers from the same research run
+- raw_json — complete JSON blob returned by the fetcher, stored as TEXT
 - fetcher_version — version string of the skill that produced this data
 - pulled_at — timestamp
 - status — one of: "success", "partial", "failed"
@@ -67,9 +80,9 @@ Fields:
 
 ## Table 3: youtube_videos
 
-One row per YouTube video discovered for a prospect.
-Populated by the YouTube fetcher agent using yt-dlp for discovery
-and youtube-transcript-api for transcript text.
+One row per YouTube video discovered for a prospect. Used by creative
+analysis. Populated by the YouTube fetcher (yt-dlp for discovery,
+youtube-transcript-api for transcripts).
 
 Fields:
 - id — primary key
@@ -87,20 +100,20 @@ Fields:
 
 ---
 
-## Table 4: interpretations
+## Table 4: analyses
 
-Stores the output of every interpretation agent run against a raw data pull.
-One row per interpreter per run. Multiple interpreters can run against the
-same raw_data pull, each producing a separate interpretation record.
+Output of every analyzer run against a raw data pull. One row per analyzer
+per run. Multiple analyzers can run against the same raw_data pull, each
+producing a separate analysis record.
 
 Fields:
 - id — primary key
 - prospect_id — foreign key to prospects.id
 - run_id — same UUID as the raw_data_pulls it was built from
-- interpreter — one of: "muse_analyzer", "emotional_tone", "story_gap",
-  "competitor_gap", "outreach_angle"
-- result_json — the full structured output from the interpreter as JSON text
-- story_logic_version — STORY_LOGIC_VERSION active when this ran
+- analyzer — one of: "company_analyzer", "creative_analyzer", "ad_spend",
+  "growth_signals", "competitor_gap", "outreach_angle"
+- result_json — full structured output from the analyzer as JSON text
+- scoring_logic_version — SCORING_LOGIC_VERSION active when this ran
 - created_at — timestamp
 - token_count — integer, approximate tokens used for this call
 
@@ -108,80 +121,82 @@ Fields:
 
 ## Table 5: reports
 
-One assembled report per run. Built from selected interpretations.
-Versioned — old reports are never deleted, just superseded by newer ones.
+One assembled report per run, built from selected analyses. Versioned —
+old reports are never deleted, just superseded. Set `is_current = 0` on the
+old report and `1` on the new one.
 
 Fields:
 - id — primary key
 - prospect_id — foreign key to prospects.id
-- run_id — UUID matching the raw_data_pulls and interpretations used
-- report_json — the full 10-section report as a JSON blob
-- interpreters_used — comma-separated list of which interpreters contributed
+- run_id — UUID matching the raw_data_pulls and analyses used
+- report_json — full report as a JSON blob
+- analyzers_used — comma-separated list of which analyzers contributed
 - app_version — VERSION string at time of generation
-- story_logic_version — STORY_LOGIC_VERSION at time of generation
-- is_current — boolean, true for the most recent report per prospect
+- scoring_logic_version — SCORING_LOGIC_VERSION at time of generation
+- is_current — boolean (0/1), true for the most recent report per prospect
 - created_at — timestamp
 
 ---
 
 ## Table 6: report_sections
 
-The 10 sections that make up every report, stored individually
-so sections can be selectively regenerated without rebuilding the whole report.
+The sections that make up the Company Sweep Review, stored individually so
+sections can be selectively regenerated without rebuilding the whole report.
 
-Sections in order:
+Sections (section_number, section_key):
 1. company_overview — who they are, founding story, market position
-2. ad_spend — Meta ad activity, spend signals, creative themes
-3. performance — estimated revenue range, growth signals, market traction
-4. funnel — how they acquire and convert customers
-5. creative — visual identity, brand voice, content style
-6. storytelling — how they currently tell their story, what's working
-7. opportunities — the 3 highest-leverage story gap opportunities for brand film
-8. agency_fit — why Story Gap Studio specifically is the right partner
-9. offer — suggested engagement structure and investment framing
-10. sources — all URLs and data sources used in the report
+2. ad_spend_estimation — Meta ad activity, spend signals, creative themes
+3. performance_metrics — revenue range, growth signals, market traction
+4. funnel_architecture — how they acquire and convert customers
+5. creative_strategy — creative-mix %, theme share, Winner Signals (Creative Strategy Analysis view)
+6. storytelling_diagnostic — how they tell their story now; strengths/gaps
+7. opportunities — the highest-leverage marketing opportunities
+8. fit_assessment — why this marketing services business is the right partner
+9. engagement — suggested engagement structure and investment framing
+10. sources — all URLs and data sources used
 
 Fields:
 - id — primary key
 - report_id — foreign key to reports.id
 - prospect_id — foreign key to prospects.id
 - section_number — integer 1–10
-- section_key — string slug matching the list above
-- content_json — the section content as structured JSON
+- section_key — slug from the list above
+- content_json — section content as structured JSON
 - created_at — timestamp
 
 ---
 
 ## Table 7: outreach
 
-Stores every email draft and its history per prospect.
-Multiple drafts allowed per prospect — versioned, not overwritten.
+Every outreach draft and its history per prospect. Multiple drafts allowed —
+versioned, not overwritten.
 
 Fields:
 - id — primary key
 - prospect_id — foreign key to prospects.id
 - report_id — foreign key to the report this draft was based on, nullable
-- subject_line — email subject
-- body_text — plain text version of the email body
+- subject_line — email subject (nullable for LinkedIn)
+- body_text — plain text message body
+- channel — one of: "email", "linkedin"
 - tone — one of: "warm", "direct", "provocative", "formal"
 - status — one of: "draft", "approved", "sent", "replied"
 - sent_at — nullable timestamp
 - replied_at — nullable timestamp
-- reply_summary — brief text note about what the reply said, nullable
+- reply_summary — brief note about what the reply said, nullable
 - created_at — timestamp
 
 ---
 
 ## Table 8: run_log
 
-An append-only log of every agent execution.
-Used for debugging, cost tracking, and audit trail.
+Append-only log of every agent execution. Used for debugging, cost tracking,
+and audit trail.
 
 Fields:
 - id — primary key
 - run_id — UUID grouping all agents in a single research run
 - prospect_id — foreign key to prospects.id
-- agent_name — the name of the skill or agent that ran
+- agent_name — name of the skill or agent that ran
 - status — one of: "started", "success", "failed", "skipped"
 - error_message — null on success
 - duration_seconds — how long the agent took
@@ -192,11 +207,30 @@ Fields:
 
 ---
 
+## Indexes
+
+- idx_prospects_crm_stage on prospects(crm_stage)
+- idx_raw_prospect_run on raw_data_pulls(prospect_id, run_id)
+- idx_yt_prospect on youtube_videos(prospect_id)
+- idx_analyses_prospect_run on analyses(prospect_id, run_id)
+- idx_reports_prospect_current on reports(prospect_id, is_current)
+- idx_sections_report on report_sections(report_id)
+- idx_outreach_prospect on outreach(prospect_id)
+- idx_runlog_run on run_log(run_id)
+
+---
+
 ## Key Rules
 
-1. No inline SQL anywhere except memory/queries.py
-2. Raw data is never overwritten — always append new rows
-3. Reports are versioned — set is_current=false on old, true on new
-4. Every agent run writes to run_log regardless of success or failure
-5. Prospect status and scores are updated after every successful report assembly
-6. The run_id UUID is generated once at orchestration start and passed to all agents
+1. No raw SQL outside `pmp-db-manager` (which uses the SQLite MCP server).
+2. Raw data is never overwritten — always append new rows.
+3. Reports are versioned — set is_current=0 on old, 1 on new.
+4. Every agent run writes to run_log regardless of success or failure.
+5. Composite score is derived by pmp-db-manager on write, never invented
+   by an analyzer. Sub-scores come from the analyzers.
+6. Prospects are never deleted — archive via crm_stage = 'archived'.
+7. Re-analysis updates the existing prospects row and appends new
+   analyses/reports rows; it never duplicates a prospect.
+8. CRM stage transitions are explicit and never skipped silently.
+9. The run_id UUID is generated once at orchestration start and passed
+   to all agents.
