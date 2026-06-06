@@ -33,6 +33,33 @@ before rendering or editing templates.
 
 ---
 
+## Materialized Templates
+
+This schema is materialized as static HTML/CSS templates in `templates/`.
+`pmp-html-renderer` fills these from the database and opens the result in a
+browser. No JS framework — plain HTML, CSS, and `<details>` accordions.
+
+| File | View | Data source |
+|---|---|---|
+| `templates/pmp_theme.css` | Shared design tokens & components | — |
+| `templates/industry_sweep.html` | View 1 | `prospects` (ORDER BY composite_score DESC) |
+| `templates/company_sweep_review.html` | View 2 | `prospects` + `report_sections` (by section_number) |
+| `templates/creative_strategy_analysis.html` | View 3 | `report_sections` (`creative_strategy`) + `analyses` (`creative_analyzer`) |
+
+Each template carries an HTML-comment **TEMPLATE CONTRACT** naming the exact
+DB columns and the `{{token}}` / `{{#each}}` substitution points the renderer
+must fill. Files ship pre-filled with the canonical test prospect
+(Taylor Guitars / acoustic guitar manufacturers) so each opens standalone in
+a browser. The visual source of truth remains:
+
+- `screen_shots/Industry Sweep Review.png`
+- `screen_shots/Company Sweep Review.png`
+- `screen_shots/Creative Strategy Analysis.png`
+
+When a screenshot and this prose disagree, the screenshot wins.
+
+---
+
 ## View 1: Industry Sweep (dashboard / index)
 
 The main landing screen for an industry. A grid of scored company cards with

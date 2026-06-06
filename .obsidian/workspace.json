@@ -13,44 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "project_plan/PMP Intel Work Plan - AI Generated.md",
+                "file": "project_plan/Peter McCabe Pictures.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PMP Intel Work Plan - AI Generated"
-            }
-          },
-          {
-            "id": "748650ac26190af4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "project_plan/PMP Intel Work Plan - AI Generated.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PMP Intel Work Plan - AI Generated"
-            }
-          },
-          {
-            "id": "ea3b0688d4ed72a7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Prompts.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Prompts"
+              "title": "Peter McCabe Pictures"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -212,31 +183,37 @@
       "bases:Create new base": false
     }
   },
-  "active": "748650ac26190af4",
+  "active": "fcdab8ab5080d145",
   "lastOpenFiles": [
-    "schema_md/DB_schema.md",
-    "project_plan/PMP Intel Work Plan - AI Generated.md",
-    "test/Test Brave Search.md",
-    "test",
-    "pmp_intel.db",
     "CLAUDE.md",
+    "project_plan/Peter McCabe Pictures.md",
+    "output/company_lowden-guitars.html",
+    "output/company_mcpherson-guitars.html",
+    "output/company_c-f-martin-and-co.html",
+    "output/company_collings-guitars.html",
+    "output/company_eastman-guitars.html",
+    "output/company_larrivee-guitars.html",
+    "output/company_bourgeois-guitars.html",
+    "output/company_breedlove-guitars.html",
+    "output/company_guild-guitars.html",
+    "output/_render_reports.py",
+    "project_plan/PMP Intel Work Plan - AI Generated.md",
     "project_plan/SGS Intel Work Plan - AI Generated.md",
+    "skill_md/pmp-company-analyzer.md",
+    "skill_md/pmp-html-renderer.md",
+    "skill_md/pmp-creative-analyzer.md",
+    "skill_md/pmp-db-manager.md",
+    "Git Cheat.md",
+    "schema_md/DB_schema.md",
+    "test/Test Brave Search.md",
     "project_plan/SGS_Intel_Work_Plan.md",
     "project_plan/PMP Intel Work Plan.md",
     "schema_md/UI_schema.md",
-    "schema_md",
     "schema/UI_schema.md",
     "schema/DB_schema.md",
-    "schema",
-    "untitled folder",
     "screen_shots/Industry Sweep Review.png",
     "screen_shots/Creative Strategy Analysis.png",
     "screen_shots/Company Sweep Review.png",
-    "project_plan",
-    "screen_shots",
-    "Shots",
-    "Screen",
-    "Plan",
     "PMP Intel Work Plan.md",
     "PMP Intel Work Plan - AI Generated.md",
     "Peter McCabe Pictures.md",

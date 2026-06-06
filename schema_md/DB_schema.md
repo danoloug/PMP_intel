@@ -195,7 +195,9 @@ and audit trail.
 Fields:
 - id — primary key
 - run_id — UUID grouping all agents in a single research run
-- prospect_id — foreign key to prospects.id
+- prospect_id — foreign key to prospects.id, **nullable**: the
+  sweep/discovery phase runs before any prospect row exists, so its
+  log rows carry NULL here. Per-prospect agents always set it.
 - agent_name — name of the skill or agent that ran
 - status — one of: "started", "success", "failed", "skipped"
 - error_message — null on success

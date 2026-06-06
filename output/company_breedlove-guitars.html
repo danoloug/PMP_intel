@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!-- PMP Intel · Company Sweep Review · rendered by output/_render_reports.py from pmp_intel.db (report 5) -->
+<html lang="en"><head><meta charset="utf-8"><title>PMP Intel — Breedlove Guitars</title>
+<style>
+/* Theme v2 — readability pass: alphas bumped (0.30→0.62, 0.45→0.80, 0.75→0.94)
+   and font sizes increased (body 14→15.5, section text 12.5→14.5).
+   Brand identity intact: Obsidian (#141414) + Champagne (#d4a840) preserved. */
+:root{--bg:#141414;--panel:#1e1e1e;--panel-2:#242424;--gold:#d4a840;--score:#e8b347;
+--cream:#f5f0e8;--cream-75:rgba(245,240,232,.94);--cream-45:rgba(245,240,232,.80);
+--cream-30:rgba(245,240,232,.62);--border:rgba(255,255,255,.14);
+--border-soft:rgba(255,255,255,.09);--green:#7ec49a;--blue:#7da3c8;--terracotta:#e07c6c;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"DM Sans",-apple-system,sans-serif;
+--mono:"DM Mono","SF Mono",ui-monospace,monospace;--rule:1px solid var(--border);--pad:28px;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--cream-75);font-family:var(--sans);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);border-bottom:var(--rule)}
+.app-header .brand{font-variant:small-caps;letter-spacing:.12em;color:var(--cream-45);font-size:14px}
+.app-header .product{font-family:var(--mono);color:var(--gold);letter-spacing:.34em;font-size:16px}
+.app-header .versions{font-family:var(--mono);color:var(--cream-30);font-size:13px;letter-spacing:.08em}
+.btn-outline{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--cream-45);
+background:transparent;border:var(--rule);padding:9px 18px;cursor:pointer;text-decoration:none}
+.btn-outline:hover{color:var(--gold);border-color:var(--gold)}
+.kpi-strip{display:flex;align-items:center;border-bottom:var(--rule)}
+.kpi{display:flex;align-items:baseline;gap:10px;padding:16px var(--pad);border-right:var(--rule)}
+.kpi .num{font-size:28px;color:var(--cream);font-weight:500}
+.kpi .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--cream-45)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot.gold{background:var(--gold)}.dot.green{background:var(--green)}
+.dot.blue{background:var(--blue)}.dot.red{background:var(--terracotta)}
+.shell{display:flex;min-height:calc(100vh - 120px)}
+.sidebar{width:320px;flex:0 0 320px;border-right:var(--rule);padding:22px var(--pad);overflow-y:auto}
+.main{flex:1;padding:32px var(--pad);min-width:640px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--cream-45);margin-bottom:12px;display:block;text-decoration:none}
+.eyebrow:hover{color:var(--gold)}
+.mini{border-left:2px solid transparent;padding:14px 0 14px 14px;border-bottom:var(--border-soft);display:block;text-decoration:none}
+.mini.active{border-left-color:var(--gold)}
+.mini:hover{background:rgba(255,255,255,.03)}
+.mini-top{display:flex;justify-content:space-between;align-items:baseline}
+.mini-name{font-family:var(--serif);font-size:20px;color:var(--cream)}
+.mini-score{font-family:var(--serif);font-size:20px;color:var(--score)}
+.mini-meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--cream-30);margin:5px 0 6px}
+.mini-note{font-size:13.5px;color:var(--cream-45);line-height:1.5}
+.co-name{font-family:var(--serif);font-size:44px;color:var(--cream);line-height:1.1}
+.co-sub{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--cream-45);margin:8px 0 20px}
+.co-score{display:flex;align-items:baseline;gap:18px}
+.co-score .big{font-family:var(--serif);font-size:68px;color:var(--score);line-height:1}
+.co-score .verdict{font-family:var(--mono);font-size:13px;letter-spacing:.2em;color:var(--gold)}
+.subscores{display:flex;gap:42px;margin:20px 0 22px}
+.subscore .v{font-family:var(--serif);font-size:30px;color:var(--cream)}
+.subscore .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--cream-45)}
+.headline{font-family:var(--serif);font-size:20px;color:var(--cream-75);font-style:italic;margin-bottom:20px;max-width:820px;line-height:1.5}
+.actions{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;border:var(--rule);padding:8px 16px;color:var(--cream-45)}
+.tag.stage{color:var(--green);border-color:rgba(126,196,154,.5)}
+.section{border-top:var(--rule)}
+.section>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:22px 4px}
+.section>summary::-webkit-details-marker{display:none}
+.section .s-title{font-family:var(--serif);font-size:28px;color:var(--cream)}
+.section .s-num{font-family:var(--mono);font-size:13px;color:var(--gold);letter-spacing:.16em;margin-right:16px}
+.section .chev{color:var(--cream-45);font-family:var(--mono);font-size:16px}
+.section[open] .chev{color:var(--gold)}
+.section-body{padding:4px 4px 32px}
+.kv{margin:8px 0;font-size:14.5px;color:var(--cream-75);line-height:1.6}
+.kv b{color:var(--cream);font-weight:600}
+.metrics{display:flex;gap:48px;flex-wrap:wrap;padding:20px 0 24px}
+.metric .v{font-family:var(--serif);font-size:26px;color:var(--cream);line-height:1.2}
+.metric .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cream-45);margin-top:6px}
+.highlight-box{border-left:3px solid var(--gold);background:rgba(212,168,64,.08);padding:16px 18px;font-size:14.5px;color:var(--cream-75);margin-top:18px;line-height:1.6}
+.highlight-box .lead{color:var(--gold);font-family:var(--mono);font-size:12px;letter-spacing:.14em;display:block;margin-bottom:8px}
+ul.clean{list-style:none;margin:10px 0;padding-left:6px}
+ul.clean li{font-size:14.5px;color:var(--cream-75);line-height:1.7;padding-left:14px;position:relative}
+ul.clean li::before{content:"·";color:var(--gold);position:absolute;left:0;top:-3px;font-size:20px;line-height:1}
+.mix-strip{display:flex;border:var(--rule);margin:8px 0 26px;background:rgba(255,255,255,.02)}
+.mix{flex:1;text-align:center;padding:26px 10px;border-right:var(--rule)}
+.mix:last-child{border-right:0}
+.mix .pct{font-family:var(--serif);font-size:36px;color:var(--cream)}
+.mix .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--cream-45);margin-top:6px}
+table.theme{width:100%;border-collapse:collapse;margin-bottom:26px}
+table.theme th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--cream-45);font-weight:500;padding:12px 14px;border-bottom:var(--rule)}
+table.theme td{padding:16px 14px;vertical-align:top;border-bottom:var(--border-soft);font-size:14.5px;color:var(--cream-75);line-height:1.55}
+table.theme td.theme-name{color:var(--cream);width:220px;font-weight:500}
+table.theme td.share{color:var(--score);font-family:var(--serif);font-size:18px;width:80px}
+.signals{border:1px solid rgba(212,168,64,.5);background:rgba(212,168,64,.08);padding:18px 22px;margin-bottom:26px}
+.signals .cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--gold);margin-bottom:14px}
+.signals ul{list-style:none}
+.signals li{font-size:14.5px;line-height:1.7;color:var(--cream-75);padding-left:18px;position:relative;margin-bottom:4px}
+.signals li::before{content:"▸";color:var(--gold);position:absolute;left:0}
+.swot{display:flex;gap:42px}
+.swot .col{flex:1}
+.swot .cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;margin-bottom:14px}
+.swot .strengths .cap{color:var(--green)}
+.swot .gaps .cap{color:var(--terracotta)}
+.swot ul{list-style:none}
+.swot li{font-size:14.5px;line-height:1.7;color:var(--cream-75);padding-left:18px;position:relative;margin-bottom:6px}
+.swot .strengths li::before{content:"▸";color:var(--green);position:absolute;left:0}
+.swot .gaps li::before{content:"▸";color:var(--terracotta);position:absolute;left:0}
+.opp{border-top:3px solid var(--gold);background:var(--panel);padding:22px 24px;margin-bottom:18px}
+.opp h4{font-family:var(--serif);font-size:23px;color:var(--cream);margin-bottom:10px}
+.opp .col2{display:flex;gap:32px;margin:10px 0}
+.opp .col2 div{flex:1;font-size:14.5px;color:var(--cream-75);line-height:1.6}
+.opp .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cream-45);display:block;margin-bottom:6px}
+.opp .impact{color:var(--gold);font-size:14px;margin-top:12px;line-height:1.5}
+.src{font-family:var(--mono);font-size:13px;color:var(--cream-45);line-height:2}
+.src a{color:var(--cream-75);text-decoration:none;display:block}
+.src a:hover{color:var(--gold)}
+footer.legal{text-align:center;font-family:var(--mono);font-size:11px;color:var(--cream-45);padding:24px;border-top:var(--rule);letter-spacing:.1em}
+</style></head><body>
+
+<div class="app-header">
+  <span class="brand">PMP Intel</span>
+  <span class="product">PMP&nbsp;INTEL</span>
+  <span class="versions">v2.2.4 &nbsp;·&nbsp; pmp-score-v1</span>
+  <a class="btn-outline" href="industry_sweep_acoustic-guitar-manufacturers.html">&larr; SWEEP</a>
+</div>
+
+<div class="kpi-strip"><div class="kpi"><span class="num">10</span><span class="lbl"><span class="dot gold"></span> TOTAL PROSPECTS</span></div><div class="kpi"><span class="num">10</span><span class="lbl"><span class="dot green"></span> IN RESEARCH</span></div><div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot blue"></span> CONTACTED</span></div><div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot red"></span> ACTIVE</span></div></div>
+
+<div class="shell">
+  <aside class="sidebar"><a href="industry_sweep_acoustic-guitar-manufacturers.html" class="eyebrow" style="display:block;margin-bottom:18px">&larr; BACK TO SWEEP</a>
+<a class="mini" href="company_guild-guitars.html"><div class="mini-top"><span class="mini-name">Guild Guitars</span><span class="mini-score">78</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<div class="mini active"><div class="mini-top"><span class="mini-name">Breedlove Guitars</span><span class="mini-score">77</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></div>
+<a class="mini" href="company_bourgeois-guitars.html"><div class="mini-top"><span class="mini-name">Bourgeois Guitars</span><span class="mini-score">75</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_larrivee-guitars.html"><div class="mini-top"><span class="mini-name">Larrivée Guitars</span><span class="mini-score">73</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_taylor-guitars.html"><div class="mini-top"><span class="mini-name">Taylor Guitars</span><span class="mini-score">72</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_eastman-guitars.html"><div class="mini-top"><span class="mini-name">Eastman Guitars</span><span class="mini-score">72</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_collings-guitars.html"><div class="mini-top"><span class="mini-name">Collings Guitars</span><span class="mini-score">68</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_c-f-martin-and-co.html"><div class="mini-top"><span class="mini-name">C.F. Martin &amp; Co.</span><span class="mini-score">64</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_mcpherson-guitars.html"><div class="mini-top"><span class="mini-name">McPherson Guitars</span><span class="mini-score">64</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_lowden-guitars.html"><div class="mini-top"><span class="mini-name">Lowden Guitars</span><span class="mini-score">61</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a></aside>
+  <main class="main">
+    <div class="co-name">Breedlove Guitars</div>
+    <div class="co-sub">ACOUSTIC GUITAR MANUFACTURERS · breedlovemusic.com</div>
+    <div class="co-score">
+      <span class="big">77<span style="font-size:24px;color:var(--cream-30)">/100</span></span>
+      <span class="verdict">STRONG PROSPECT</span>
+    </div>
+    <div class="subscores"><div class="subscore"><div class="v">7.5</div><div class="k">CREATIVE</div></div><div class="subscore"><div class="v">5.5</div><div class="k">BUDGET</div></div><div class="subscore"><div class="v">8.5</div><div class="k">GROWTH</div></div><div class="subscore"><div class="v">9.0</div><div class="k" title="⚠ definition unconfirmed — pending user decision">OTHER DAY ⚠</div></div></div>
+    <div class="headline">Boutique Bend, Oregon acoustic builder mid-relaunch under new owner-musicians — exceptional creative story raw material, modest paid footprint, and a 30-day window before the new retail space opens.</div>
+    <div class="actions">
+      <span class="tag stage">IN RESEARCH</span>
+      <span class="tag">RE-ANALYZE</span>
+      <span class="tag">DRAFT OUTREACH</span>
+      <span class="tag">ARCHIVE</span>
+    </div>
+    <details class="section" open><summary><span class="s-title"><span class="s-num">01</span>Company Overview</span><span class="chev">▾</span></summary><div class="section-body"><div class="metrics"><div class="metric"><div class="v">~$8.5M (Zippia public estimate)</div><div class="k">REVENUE</div></div><div class="metric"><div class="v">~35–60 (sources vary: Central Oregon Daily ~35; Explorium 60; PitchBook 50)</div><div class="k">EMPLOYEES</div></div><div class="metric"><div class="v">~2,000 handcrafted guitars per year</div><div class="k">PRODUCTION</div></div><div class="metric"><div class="v">insufficient evidence</div><div class="k">MARKET SHARE</div></div></div><p style="color:var(--cream-45);font-size:13px">Breedlove Guitars is a Bend, Oregon-based American acoustic guitar maker founded in 1990 by ex-Taylor luthiers Larry Breedlove and Steve Henderson. After two financial setbacks, the brand was acquired in 2010 by Tom Bedell's Two Old Hippies LLC, which led a sustainability-first reinvention. In June 2025 the company was sold again to Nashville-based musicians Pete Mroz (formerly NBC The Voice; business background at Ping Golf, Travis Mathew, FootJoy) and Shannon Pollard (founder of Plowboy Records, grandson of Eddy Arnold). At NAMM 2026 the new ownership launched a streamlined, USA-only lineup across three tiers: Roots, Artisan, and Collector — discontinuing all overseas production. The brand is one of the 'quartet of mid-size American custom-guitar manufacturers' alongside Bourgeois, Collings, and Santa Cruz.</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">02</span>Ad Spend Estimation</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Signal band:</b> moderate (qualitative)</p>
+<p class="kv">Music Inc Magazine confirms an 'aggressive digital marketing campaign' through April 2025 supporting a dealer 'buy USA-made get free Discovery' promotion. 2026 NAMM relaunch (Booth 6402) is being amplified through Sweetwater, Premier Guitar, and dealer YouTube ecosystems. Social footprint is modest (40K IG, 65.5K FB, 1.86K LinkedIn) with dealer co-op spend prioritized over DTC paid social.</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">03</span>Performance Metrics</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Revenue:</b> ~$8.5M annual <span style="color:var(--cream-30)">— zippia.com/breedlove-guitars-careers-1580676</span></p>
+<p class="kv"><b>Production Volume:</b> ~2,000 guitars/year <span style="color:var(--cream-30)">— centraloregondaily.com</span></p>
+<p class="kv"><b>Price Range:</b> ~$2,500 entry to $24,000 high-end; 2026 lineup: Roots $2,899–$3,399, Artisan $4,299–$4,499, Collector $5,999–$10,999 <span style="color:var(--cream-30)">— breedloveguitars.com, centraloregondaily.com</span></p>
+<p class="kv"><b>Growth Signals:</b> Acquisition closed June 2025; full 2026 NAMM relaunch; new Bend retail space + warehouse sale June 13 2026; 75-guitar / ~$65K school donation Nov 2025; all import lines discontinued for 2026 <span style="color:var(--cream-30)">— guitar.com, ktvz.com, centraloregondaily.com, ecgmusic.com</span></p>
+<p class="kv"><b>Awards Traction:</b> Music Inc 2019 Suppliers Excellence Award; world's largest legal CITES Brazilian Rosewood collection (2013); Grammy-winning artists playing Breedlove instruments <span style="color:var(--cream-30)">— breedlovemusic.com sustainability, en.wikipedia.org, ktvz.com</span></p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">04</span>Funnel Architecture</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Channels:</b></p><ul class="clean"><li>Indie dealer network (Distinctive Dealers)</li><li>Sweetwater (largest national dealer)</li><li>Bend, OR retail (new in 2026)</li><li>Music Inc dealer promotions</li></ul></div></details><details class="section"><summary><span class="s-title"><span class="s-num">05</span>Creative Strategy Analysis</span><span class="chev">▸</span></summary><div class="section-body"><div class="mix-strip"><div class="mix"><div class="pct">70%</div><div class="lbl">VIDEO</div></div><div class="mix"><div class="pct">20%</div><div class="lbl">STATIC</div></div><div class="mix"><div class="pct">10%</div><div class="lbl">CAROUSEL</div></div><div class="mix"><div class="pct">15%</div><div class="lbl">AB TESTING</div></div></div>
+<table class="theme"><thead><tr><th>THEME</th><th>SHARE</th><th>DESCRIPTION</th></tr></thead><tbody><tr><td class="theme-name">Made-in-Bend craftsmanship / factory process</td><td class="share">~35%</td><td>Factory tours, hand-voicing close-ups, R&amp;D walk-throughs — most-repeated motif.</td></tr><tr><td class="theme-name">Sustainability / sourcing</td><td class="share">~20%</td><td>Black Ram Guitar documentary with Jeff Bridges; Angela Christensen sustainability film.</td></tr><tr><td class="theme-name">Artist &amp; ownership storytelling</td><td class="share">~20%</td><td>Pete Mroz / Shannon Pollard 'New Era' interview, Max McNown, Jeff Bridges Signature.</td></tr><tr><td class="theme-name">Product demo / dealer co-marketing</td><td class="share">~20%</td><td>Sweetwater, Premier Guitar NAMM 2026, retailer first-look videos.</td></tr><tr><td class="theme-name">Community / philanthropy</td><td class="share">~5%</td><td>75-guitar school donation, Music Therapy Retreats partnership.</td></tr></tbody></table>
+<div class="signals"><div class="cap">▸ WINNER SIGNALS</div><ul><li>Factory-tour content earns repeat third-party coverage</li><li>Jeff Bridges + Black Ram documentary arc — deepest narrative engagement</li><li>Owner-led 'New Era' interview positioned as lead 2026 vehicle</li><li>Tom Bedell single-word brand-essence format reusable but not yet replicated by new owners</li></ul></div>
+<div class="swot"><div class="col strengths"><div class="cap">▸ STRENGTHS</div><ul><li>Ownable visual world: Bend shop, Myrtlewood, hand-voicing</li><li>Genuine celebrity asset (Jeff Bridges) tied to credible sustainability</li><li>Active dealer-amplified video ecosystem</li><li>Three clear product tiers since 2026 relaunch</li><li>Owner-musicians as natural on-camera assets</li></ul></div><div class="col gaps"><div class="cap">▸ WEAKNESSES / GAPS</div><ul><li>IG 40K small relative to story depth; Reels run sporadic</li><li>No discoverable A/B testing program</li><li>USA-made relaunch told as press release, not cinematic</li><li>Community/philanthropy under-leveraged</li><li>Pete Mroz personal artist content + Plowboy Records network not integrated</li><li>'Sold out' products without waitlist creative</li><li>LinkedIn effectively abandoned (1,865 followers)</li></ul></div></div>
+<p style="color:var(--cream-30);font-family:var(--mono);font-size:10px;margin-top:14px">creative_score 7.5 · </p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">06</span>Storytelling Diagnostic</span><span class="chev">▸</span></summary><div class="section-body"><div class="swot"><div class="col strengths"><div class="cap">▸ WORKING</div><ul><li>Sustainability arc told in long-form documentary (All in This Together / Black Ram) — unusually rigorous for category</li><li>Owner-musicians have high innate credibility</li><li>Manufacturing process is visual, repeatable, earns earned media</li><li>Three-tier product line creates clear price/story segmentation</li></ul></div><div class="col gaps"><div class="cap">▸ MISSING</div><ul><li>The owners' own insight ('Bend doesn't know we're here') has not been turned into a local-pride / community-driven creative arc</li><li>No clear short-form video program telling the relaunch story to non-dealer audiences</li><li>The brand's strongest paradox — world's largest legal Brazilian Rosewood + 100% sustainable — is buried</li><li>No founder-luthier origin retelling (Larry Breedlove / Steve Henderson left Taylor in 1990) under new ownership</li><li>Music Trades 2013 flagged the recognition gap; it persists 13 years later</li></ul></div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">07</span>Opportunities</span><span class="chev">▸</span></summary><div class="section-body"><div class="opp"><h4>Cinematic Relaunch Story (replace press-release with a film)</h4><div class="col2"><div><span class="lab">THE GAP</span>The 2026 USA-only relaunch is being told via press release + dealer demos. No single owned cinematic asset explains WHY Pete and Shannon bought the company and WHY the line is now 100% Bend-built.</div><div><span class="lab">WHAT WE DELIVER</span>A documentary-style 8–12 minute owned-channel film (plus 6–8 short-form cuts) profiling the owners, the Bend shop, the 2026 lineup, and the 'bringing it back home' decision.</div></div><div class="impact">Impact — Anchors the relaunch narrative for the next 24 months; gives dealers and press a single referenceable story; closes the long-standing 'What's a Breedlove?' recognition gap.</div></div>
+<div class="opp"><h4>Short-form social engine + paid amplification</h4><div class="col2"><div><span class="lab">THE GAP</span>@breedloveguitar (40K) and the YouTube channel publish episodically; no visible A/B testing; earned reach currently exceeds owned.</div><div><span class="lab">WHAT WE DELIVER</span>A 90-day short-form program: weekly Reels/Shorts cuts mined from the factory, owner content, and artist features; structured A/B testing of hooks, CTAs, and audience segments; paid amplification to high-intent guitar-buyer audiences on Meta and YouTube.</div></div><div class="impact">Impact — Triples top-funnel reach without re-shooting; converts existing Bend-shop footage into a measurable demand-gen channel.</div></div>
+<div class="opp"><h4>Owner-musician + Plowboy Records flywheel</h4><div class="col2"><div><span class="lab">THE GAP</span>Pete Mroz is a recording artist; Shannon Pollard founded Plowboy Records. Their personal platforms and label network are not integrated into Breedlove creative — a unique asset competitors cannot replicate.</div><div><span class="lab">WHAT WE DELIVER</span>An owner-led 'Played in Bend' artist series: Plowboy/Nashville artists recording on Breedlove instruments at the Bend shop, cross-posted from artist + brand channels. Anchored to the new Bend retail space (opening June 2026).</div></div><div class="impact">Impact — Defensible artist-relations program; converts music-industry credibility into compounding owned content; activates the new retail space as a content set, not just a store.</div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">08</span>Fit Assessment</span><span class="chev">▸</span></summary><div class="section-body"><div class="swot"><div class="col gaps"><div class="cap">▸ CURRENT STATE</div><ul><li>Strong product, photogenic shop, world-class story raw material</li><li>Modest paid-media footprint, episodic content cadence</li><li>Effectively no DTC purchase funnel; revenue routed through dealers</li><li>New ownership ~12 months in, post-NAMM relaunch, post-USA-only transition</li><li>Recognition gap persists in mainstream player consciousness ('What's a Breedlove?')</li></ul></div><div class="col strengths"><div class="cap">▸ WHAT WE BRING</div><ul><li>Cinematic brand storytelling + relaunch film production</li><li>Short-form social engine with structured A/B testing</li><li>Owner-musician + label-network integration playbook</li><li>Demand-gen paid media against guitar-buyer audiences</li><li>CRM + waitlist creative to convert 'Sold out' impressions into pipeline</li></ul></div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">09</span>Engagement Structure</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Investment Framing:</b> Mid-market retainer scaled to Breedlove's boutique (~$8.5M revenue) profile: production-weighted in Phase 1, media-weighted in Phase 2. Co-op marketing dollars from Sweetwater and Distinctive Dealers can offset a portion of Phase 2 spend.</p>
+<p class="kv"><b>Why Now:</b> New ownership at 12-month mark; full lineup relaunched at NAMM 2026; new Bend retail space opens within 30 days; owners on record saying 'Bend doesn't know we're here.' Window is open.</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">10</span>Sources</span><span class="chev">▸</span></summary><div class="section-body"><div class="src"><a href="https://breedloveguitars.com/">Breedlove Guitars (official site)</a><a href="https://breedlovemusic.com/about-us/the-breedlove-shop">The Breedlove Shop</a><a href="https://en.wikipedia.org/wiki/Breedlove_Guitars">Breedlove Guitars — Wikipedia</a><a href="https://guitar.com/news/industry-news/breedlove-bedell-guitars-sold/">Breedlove and Bedell Guitars sold (Guitar.com, June 2025)</a><a href="https://musicplayers.com/2026/01/breedlove-guitars-announces-2026-relaunch-at-namm/">Breedlove Guitars Announces 2026 Relaunch at NAMM</a><a href="https://ktvz.com/made-in-central-oregon/2026/05/21/made-in-central-oregon-inside-the-bend-shop-behind-breedlove-guitars/">Made in Central Oregon (KTVZ, May 2026)</a><a href="https://www.centraloregondaily.com/news/local/breedlove-guitars-new-nashville-owners/article_bc61f7a2-720a-40ef-baac-e51c28a425cc.html">Bend's Breedlove Guitars sold to Nashville musicians</a><a href="https://www.centraloregondaily.com/news/local/breedlove-donates-75-guitars-to-bend-la-pine-schools/article_08696c43-60d8-4668-a832-54ae183162b4.html">Breedlove donates 75 guitars to Bend-La Pine schools</a><a href="https://www.centraloregondaily.com/news/in-focus/bend-breedlove-weber-instruments-big-stages/article_736ee986-5a23-4637-9d9d-59f7b829692f.html">Bend-built guitars and mandolins hit big stages</a><a href="https://www.musicincmag.com/news/detail/breedlove-reaffirms-commitment-to-indie-dealers-with-new-promotion">Breedlove Reaffirms Commitment to Indie Dealers</a><a href="https://www.sweetwater.com/store/manufacturer/Breedlove">Breedlove at Sweetwater</a><a href="https://www.zippia.com/breedlove-guitars-careers-1580676/">Breedlove Guitars — Zippia</a><a href="https://pitchbook.com/profiles/company/267876-55">Breedlove Guitar — PitchBook</a><a href="https://www.instagram.com/breedloveguitar/">@breedloveguitar (Instagram)</a><a href="https://www.facebook.com/breedloveguitar/">Breedlove Guitars (Facebook)</a><a href="https://www.linkedin.com/company/breedlove-guitar-company">Breedlove Guitar Company (LinkedIn)</a><a href="https://breedlovemusic.com/instruments/acoustic-guitars/sustainability">Breedlove Sustainability</a><a href="https://breedlovemusic.com/acoustic-guitar-blog/every-day-is-earth-day-at-breedlove-the-black-ram-guitar-and-a-forest-worth-saving">Black Ram Guitar / All in This Together</a><a href="https://breedlovemusic.com/acoustic-guitar-blog/music-trades-magazine-covers-the-breedlove-rebranding-campaign">Music Trades Magazine on Breedlove Rebranding</a><a href="https://ecgmusic.com/blogs/news/breedlove-closeouts-final-import-inventory-no-restocks-not-in-2026-lineup">Breedlove Closeouts: Import Lines Discontinued</a><a href="https://karlfandkin.com/2026/02/14/breedlove-happenings/">Breedlove Happenings (analyst blog)</a></div></div></details>
+  </main>
+</div>
+
+<footer class="legal">PMP INTEL · COMPANY SWEEP REVIEW · BREEDLOVE GUITARS · REPORT 5 · pmp-score-v1</footer>
+</body></html>

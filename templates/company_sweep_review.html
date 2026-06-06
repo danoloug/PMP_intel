@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+  PMP Intel — VIEW 2: Company Sweep Review
+  Spec: schema_md/UI_schema.md (View 2) · Visual: screen_shots/Company Sweep Review.png
+  Data: prospects (header) + reports/report_sections (accordion bodies)
+
+  TEMPLATE CONTRACT for pmp-html-renderer:
+    Header   -> prospects: company_name, industry, website_url,
+                composite_score, verdict(derived band), creative_score,
+                budget_score, growth_score, other_day_score,
+                crm_stage, notes, has_new_transcripts
+    Sections -> report_sections WHERE report_id = current report,
+                ORDER BY section_number. section_key drives which body
+                layout renders. Section 01 (company_overview) is
+                expanded by default; all others collapsed.
+                Section 05 (creative_strategy) embeds the
+                Creative Strategy Analysis view (see that template).
+    Buttons "Re-Analyze" / "Draft Outreach" trigger pmp orchestration.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PMP Intel — Taylor Guitars</title>
+<link rel="stylesheet" href="pmp_theme.css">
+</head>
+<body>
+
+<div class="app-header">
+  <span class="brand">PMP Intel</span>
+  <span class="product">PMP&nbsp;INTEL</span>
+  <span class="versions">v2.2.4 &nbsp;·&nbsp; SL v1.2</span>
+  <button class="btn-outline">EXPORT CSV</button>
+</div>
+
+<div class="kpi-strip">
+  <div class="kpi"><span class="num">26</span><span class="lbl"><span class="dot gold"></span> TOTAL PROSPECTS</span></div>
+  <div class="kpi"><span class="num">17</span><span class="lbl"><span class="dot green"></span> IN RESEARCH</span></div>
+  <div class="kpi"><span class="num">9</span><span class="lbl"><span class="dot blue"></span> CONTACTED</span></div>
+  <div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot red"></span> ACTIVE</span></div>
+</div>
+
+<div class="shell">
+
+  <!-- Sidebar reuses the Prospect CRM rail from View 1 -->
+  <aside class="sidebar">
+    <a href="industry_sweep.html" class="eyebrow" style="display:block;margin-bottom:18px">&larr; BACK TO SWEEP</a>
+    <!-- {{#each prospects}} (same .mini markup as industry_sweep.html) -->
+    <div class="mini active">
+      <div class="mini-top"><span class="mini-name">Taylor Guitars</span><span class="mini-score">9.2</span></div>
+      <div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITARS</div>
+      <div class="mini-note">Employee-owned; founder-transition story is a premium opening.</div>
+    </div>
+    <div class="mini">
+      <div class="mini-top"><span class="mini-name">C.F. Martin &amp; Co.</span><span class="mini-score">8.7</span></div>
+      <div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITARS</div>
+      <div class="mini-note">Legacy brand; modern storytelling gap.</div>
+    </div>
+    <div class="mini">
+      <div class="mini-top"><span class="mini-name">Suhr Guitars</span><span class="mini-score">8.4</span></div>
+      <div class="mini-meta">LEAD · ACOUSTIC GUITARS</div>
+      <div class="mini-note">Master-luthier craftsmanship under-marketed.</div>
+    </div>
+    <!-- {{/each}} -->
+  </aside>
+
+  <main class="main">
+
+    <!-- ===== Detail header ===== -->
+    <div class="co-name">Taylor Guitars</div>
+    <div class="co-sub">GUITAR MANUFACTURING · EL CAJON, CA · taylorguitars.com</div>
+
+    <div class="co-score">
+      <span class="big">9.2<span style="font-size:24px;color:var(--cream-30)">/10</span></span>
+      <span class="verdict">EXCEPTIONAL PROSPECT · PHASE 1 READY</span>
+    </div>
+
+    <!-- Sub-scores: maps to creative/budget/growth/other_day_score -->
+    <div class="subscores">
+      <div class="subscore"><div class="v">4.5</div><div class="k">CREATIVE</div></div>
+      <div class="subscore"><div class="v">9.5</div><div class="k">BUDGET</div></div>
+      <div class="subscore"><div class="v">9.8</div><div class="k">GROWTH</div></div>
+      <div class="subscore"><div class="v">9.8</div><div class="k">OTHER DAY</div></div>
+    </div>
+
+    <div class="actions">
+      <span class="tag stage">IN RESEARCH</span>
+      <span class="tag">OPEN FULL REPORT &nearr;</span>
+      <span class="tag">RE-ANALYZE</span>
+      <span class="tag">DRAFT OUTREACH</span>
+      <span class="tag">DELETE</span>
+    </div>
+
+    <div class="notes-box">
+      <textarea placeholder="Add notes...">{{notes}}</textarea>
+      <button class="btn-outline" style="margin-top:10px">SAVE NOTES</button>
+    </div>
+
+    <!-- ===== Accordion sections (report_sections by section_number) ===== -->
+
+    <details class="section" open>
+      <summary><span class="s-title"><span class="s-num">01</span>Company Overview</span><span class="chev">▾</span></summary>
+      <div class="section-body">
+        <div class="metrics">
+          <div class="metric"><div class="v">$125M+</div><div class="k">ANNUAL REVENUE</div></div>
+          <div class="metric"><div class="v">1,200+</div><div class="k">EMPLOYEE COUNT</div></div>
+          <div class="metric"><div class="v">700–900</div><div class="k">GUITARS / DAY</div></div>
+          <div class="metric"><div class="v">~40%</div><div class="k">US ACOUSTIC SHARE</div></div>
+        </div>
+        <p style="color:var(--cream-45);font-size:13px">Taylor Guitars was founded in 1974 by Bob Taylor and Kurt Listug. The company employs ~1,200 people and produces 700–900 guitars per day, reaching estimated annual sales of $125M. In 2021 the founders transitioned ownership to an Employee Stock Ownership Plan (ESOP), making Taylor 100% employee-owned.</p>
+        <div class="highlight-box">
+          <span class="lead">FOUNDING & AWARDS</span>
+          Founded 1974 (Bob Taylor / Kurt Listug) · ESOP transition 2021 · Distribution across 80+ countries · Artist roster includes Taylor Swift, Jason Mraz, Zac Brown · Category: acoustic guitar market — Taylor/Martin split ~80% of North American premium market.
+        </div>
+      </div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">02</span>Ad Spend Estimation</span><span class="chev">▸</span></summary>
+      <div class="section-body"><p>{{section.ad_spend_estimation}}</p></div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">03</span>Performance Metrics</span><span class="chev">▸</span></summary>
+      <div class="section-body"><p>{{section.performance_metrics}}</p></div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">04</span>Funnel Architecture</span><span class="chev">▸</span></summary>
+      <div class="section-body"><p>{{section.funnel_architecture}}</p></div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">05</span>Creative Strategy Analysis</span><span class="chev">▸</span></summary>
+      <div class="section-body">
+        <!-- Embeds View 3. pmp-html-renderer inlines creative_strategy_analysis.html here. -->
+        <p style="color:var(--cream-30);font-family:var(--mono);font-size:11px">↳ See creative_strategy_analysis.html (rendered inline for this prospect)</p>
+      </div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">06</span>Storytelling Diagnostic</span><span class="chev">▸</span></summary>
+      <div class="section-body"><p>{{section.storytelling_diagnostic}}</p></div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">07</span>Opportunities</span><span class="chev">▸</span></summary>
+      <div class="section-body"><p>{{section.opportunities}}</p></div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">08</span>Fit Assessment</span><span class="chev">▸</span></summary>
+      <div class="section-body"><p>{{section.fit_assessment}}</p></div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">09</span>Engagement Structure</span><span class="chev">▸</span></summary>
+      <div class="section-body"><p>{{section.engagement}}</p></div>
+    </details>
+
+    <details class="section">
+      <summary><span class="s-title"><span class="s-num">10</span>Sources</span><span class="chev">▸</span></summary>
+      <div class="section-body" style="font-family:var(--mono);font-size:11px;color:var(--cream-30)"><p>{{section.sources}}</p></div>
+    </details>
+
+  </main>
+</div>
+
+<footer class="legal">PMP INTEL · COMPANY SWEEP REVIEW · TAYLOR GUITARS · REPORT {{report_id}} · GENERATED {{generated_at}}</footer>
+</body>
+</html>

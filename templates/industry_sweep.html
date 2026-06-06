@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--
+  PMP Intel — VIEW 1: Industry Sweep
+  Spec: schema_md/UI_schema.md (View 1) · Visual: screen_shots/Industry Sweep Review.png
+  Data source: prospects table (one row per company)
+
+  TEMPLATE CONTRACT for pmp-html-renderer:
+    {{biz_name}} {{app_version}} {{scoring_version}}
+    {{industry}}  -- current niche
+    KPI counts:   {{n_total}} {{n_research}} {{n_contacted}} {{n_active}}
+                  (COUNT prospects GROUP BY crm_stage)
+    {{#each prospects ORDER BY composite_score DESC}} -> .card and sidebar .mini
+      fields: company_name, composite_score, crm_stage, outreach_stage,
+              industry, last_analyzed_at, notes, has_new_transcripts(bool)
+    Card score color is always --score. .card.selected = currently opened
+    prospect. Sidebar .mini mirrors the grid, filtered by the active
+    CRM rail stage.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PMP Intel — Industry Sweep</title>
+<link rel="stylesheet" href="pmp_theme.css">
+</head>
+<body>
+
+<div class="app-header">
+  <span class="brand">PMP Intel</span>
+  <span class="product">PMP&nbsp;INTEL</span>
+  <span class="versions">v2.2.4 &nbsp;·&nbsp; SL v1.2</span>
+  <button class="btn-outline">EXPORT CSV</button>
+</div>
+
+<!-- KPI strip: one .kpi per CRM stage, colored dot per stage -->
+<div class="kpi-strip">
+  <div class="kpi"><span class="num">26</span><span class="lbl"><span class="dot gold"></span> TOTAL PROSPECTS</span></div>
+  <div class="kpi"><span class="num">9</span><span class="lbl"><span class="dot green"></span> IN RESEARCH</span></div>
+  <div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot blue"></span> CONTACTED</span></div>
+  <div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot red"></span> ACTIVE</span></div>
+</div>
+
+<div class="shell">
+
+  <!-- ===== Sidebar: Discovery Sweep + Prospect CRM rail ===== -->
+  <aside class="sidebar">
+    <div class="eyebrow">DISCOVERY SWEEP — ENTER A NICHE</div>
+    <input class="niche-input" placeholder="e.g. luxury outdoor apparel">
+    <button class="btn-sweep">RUN PHASE 1 SWEEP</button>
+
+    <div class="chips">
+      <span class="chip">Acoustic Guitars</span>
+      <span class="chip">Luxury Outdoor</span>
+      <span class="chip">Boutique Hotel</span>
+      <span class="chip">Sustainable Apparel</span>
+      <span class="chip">Premium Pet</span>
+      <span class="chip">Specialty Coffee</span>
+      <span class="chip">DTC Furniture</span>
+      <span class="chip add">+ new</span>
+    </div>
+
+    <div class="crm-head">
+      <span class="eyebrow" style="margin:0">PROSPECT CRM</span>
+      <span class="view-toggle"><span>List</span> · <span class="on">Cards</span></span>
+    </div>
+
+    <!-- {{#each prospects}} -->
+    <div class="mini active">
+      <div class="mini-top"><span class="mini-name">Taylor Guitars</span><span class="mini-score">9.2</span></div>
+      <div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITARS</div>
+      <div class="mini-note">Employee-owned manufacturer; founder-transition story is a premium storytelling opening.</div>
+    </div>
+    <div class="mini">
+      <div class="mini-top"><span class="mini-name">C.F. Martin &amp; Co.</span><span class="mini-score">8.7</span></div>
+      <div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITARS</div>
+      <div class="mini-note">Legacy brand, recent growth and facility expansion; modern storytelling gap.</div>
+    </div>
+    <div class="mini">
+      <div class="mini-top"><span class="mini-name">Suhr Guitars</span><span class="mini-score">8.4</span></div>
+      <div class="mini-meta">LEAD · ACOUSTIC GUITARS</div>
+      <div class="mini-note">$1,500–$5,000 boutique range; master-luthier craftsmanship under-marketed.</div>
+    </div>
+    <div class="mini">
+      <div class="mini-top"><span class="mini-name">LAVA Music</span><span class="mini-score">8.3</span></div>
+      <div class="mini-meta">LEAD · ACOUSTIC GUITARS</div>
+      <div class="mini-note">Smart-guitar tech; can attract tech-savvy consumers but creative is thin.</div>
+    </div>
+    <!-- {{/each}} -->
+  </aside>
+
+  <!-- ===== Main: scored card grid (composite_score DESC) ===== -->
+  <main class="main">
+    <div class="grid">
+
+      <!-- {{#each prospects}} -->
+      <div class="card selected">
+        <div class="score">9.2</div>
+        <div class="name">Taylor Guitars</div>
+        <div class="meta">IN_RESEARCH · ACOUSTIC GUITARS</div>
+        <div class="desc">Massive revenue and employee-ownership transition creates a premium storytelling opportunity for high-margin acoustic positioning.</div>
+        <div class="banner">New transcripts available — Re-Analyze</div>
+      </div>
+      <div class="card">
+        <div class="score">8.7</div>
+        <div class="name">C.F. Martin &amp; Company</div>
+        <div class="meta">IN_RESEARCH · ACOUSTIC GUITARS</div>
+        <div class="desc">Legacy brand with recent growth and facility expansion; modern storytelling approach is the gap to exploit.</div>
+      </div>
+      <div class="card">
+        <div class="score">8.4</div>
+        <div class="name">Suhr Guitars</div>
+        <div class="meta">LEAD · ACOUSTIC GUITARS</div>
+        <div class="desc">Boutique guitars in the $1,500–$5,000 range deliver 45–60% margins on direct-to-consumer channels.</div>
+      </div>
+      <div class="card">
+        <div class="score">8.3</div>
+        <div class="name">LAVA Music</div>
+        <div class="meta">LEAD · ACOUSTIC GUITARS</div>
+        <div class="desc">Smart-guitar tech can attract tech-savvy consumers; companies should invest in R&amp;D storytelling.</div>
+      </div>
+      <div class="card">
+        <div class="score">7.8</div>
+        <div class="name">PRS Guitars</div>
+        <div class="meta">LEAD · ACOUSTIC GUITARS</div>
+        <div class="desc">PRS grew their employee count by 11% last year and launched five new acoustic pickups.</div>
+      </div>
+      <div class="card">
+        <div class="score">7.8</div>
+        <div class="name">Collings Guitars</div>
+        <div class="meta">LEAD · ACOUSTIC GUITARS</div>
+        <div class="desc">High-revenue boutique builder with minimal video content and a weak social presence.</div>
+      </div>
+      <div class="card">
+        <div class="score">7.2</div>
+        <div class="name">Ernie Ball Music Man</div>
+        <div class="meta">LEAD · ACOUSTIC GUITARS</div>
+        <div class="desc">The shift to direct-to-consumer guitar sales is accelerating; creative is undeveloped.</div>
+      </div>
+      <div class="card">
+        <div class="score">6.9</div>
+        <div class="name">Gretsch</div>
+        <div class="meta">LEAD · ACOUSTIC GUITARS</div>
+        <div class="desc">Distinct heritage brand; visual storytelling but creative-mix is single-channel.</div>
+      </div>
+      <!-- {{/each}} -->
+
+    </div>
+  </main>
+</div>
+
+<footer class="legal">PMP INTEL · INDUSTRY SWEEP · ACOUSTIC GUITAR MANUFACTURERS · GENERATED {{generated_at}}</footer>
+</body>
+</html>

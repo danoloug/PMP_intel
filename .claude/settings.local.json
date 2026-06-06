@@ -18,7 +18,10 @@
       "mcp__pmp-fs__get_file_info",
       "mcp__pmp-fs__list_allowed_directories",
       "mcp__pmp-sqlite__create_table",
-      "mcp__pmp-sqlite__write_query"
+      "mcp__pmp-sqlite__write_query",
+      "mcp__brave-search__brave_web_search",
+      "Bash(python3 *)",
+      "Bash(open /Users/dano/Projects/Claude_CLI/PMP_Intel/output/industry_sweep_acoustic-guitar-manufacturers.html)"
     ]
   },
   "enabledMcpjsonServers": [

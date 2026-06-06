@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- PMP Intel · Company Sweep Review · rendered by output/_render_reports.py from pmp_intel.db (report 9) -->
+<html lang="en"><head><meta charset="utf-8"><title>PMP Intel — Collings Guitars</title>
+<style>
+/* Theme v2 — readability pass: alphas bumped (0.30→0.62, 0.45→0.80, 0.75→0.94)
+   and font sizes increased (body 14→15.5, section text 12.5→14.5).
+   Brand identity intact: Obsidian (#141414) + Champagne (#d4a840) preserved. */
+:root{--bg:#141414;--panel:#1e1e1e;--panel-2:#242424;--gold:#d4a840;--score:#e8b347;
+--cream:#f5f0e8;--cream-75:rgba(245,240,232,.94);--cream-45:rgba(245,240,232,.80);
+--cream-30:rgba(245,240,232,.62);--border:rgba(255,255,255,.14);
+--border-soft:rgba(255,255,255,.09);--green:#7ec49a;--blue:#7da3c8;--terracotta:#e07c6c;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"DM Sans",-apple-system,sans-serif;
+--mono:"DM Mono","SF Mono",ui-monospace,monospace;--rule:1px solid var(--border);--pad:28px;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--cream-75);font-family:var(--sans);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);border-bottom:var(--rule)}
+.app-header .brand{font-variant:small-caps;letter-spacing:.12em;color:var(--cream-45);font-size:14px}
+.app-header .product{font-family:var(--mono);color:var(--gold);letter-spacing:.34em;font-size:16px}
+.app-header .versions{font-family:var(--mono);color:var(--cream-30);font-size:13px;letter-spacing:.08em}
+.btn-outline{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--cream-45);
+background:transparent;border:var(--rule);padding:9px 18px;cursor:pointer;text-decoration:none}
+.btn-outline:hover{color:var(--gold);border-color:var(--gold)}
+.kpi-strip{display:flex;align-items:center;border-bottom:var(--rule)}
+.kpi{display:flex;align-items:baseline;gap:10px;padding:16px var(--pad);border-right:var(--rule)}
+.kpi .num{font-size:28px;color:var(--cream);font-weight:500}
+.kpi .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--cream-45)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot.gold{background:var(--gold)}.dot.green{background:var(--green)}
+.dot.blue{background:var(--blue)}.dot.red{background:var(--terracotta)}
+.shell{display:flex;min-height:calc(100vh - 120px)}
+.sidebar{width:320px;flex:0 0 320px;border-right:var(--rule);padding:22px var(--pad);overflow-y:auto}
+.main{flex:1;padding:32px var(--pad);min-width:640px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--cream-45);margin-bottom:12px;display:block;text-decoration:none}
+.eyebrow:hover{color:var(--gold)}
+.mini{border-left:2px solid transparent;padding:14px 0 14px 14px;border-bottom:var(--border-soft);display:block;text-decoration:none}
+.mini.active{border-left-color:var(--gold)}
+.mini:hover{background:rgba(255,255,255,.03)}
+.mini-top{display:flex;justify-content:space-between;align-items:baseline}
+.mini-name{font-family:var(--serif);font-size:20px;color:var(--cream)}
+.mini-score{font-family:var(--serif);font-size:20px;color:var(--score)}
+.mini-meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--cream-30);margin:5px 0 6px}
+.mini-note{font-size:13.5px;color:var(--cream-45);line-height:1.5}
+.co-name{font-family:var(--serif);font-size:44px;color:var(--cream);line-height:1.1}
+.co-sub{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--cream-45);margin:8px 0 20px}
+.co-score{display:flex;align-items:baseline;gap:18px}
+.co-score .big{font-family:var(--serif);font-size:68px;color:var(--score);line-height:1}
+.co-score .verdict{font-family:var(--mono);font-size:13px;letter-spacing:.2em;color:var(--gold)}
+.subscores{display:flex;gap:42px;margin:20px 0 22px}
+.subscore .v{font-family:var(--serif);font-size:30px;color:var(--cream)}
+.subscore .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--cream-45)}
+.headline{font-family:var(--serif);font-size:20px;color:var(--cream-75);font-style:italic;margin-bottom:20px;max-width:820px;line-height:1.5}
+.actions{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;border:var(--rule);padding:8px 16px;color:var(--cream-45)}
+.tag.stage{color:var(--green);border-color:rgba(126,196,154,.5)}
+.section{border-top:var(--rule)}
+.section>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:22px 4px}
+.section>summary::-webkit-details-marker{display:none}
+.section .s-title{font-family:var(--serif);font-size:28px;color:var(--cream)}
+.section .s-num{font-family:var(--mono);font-size:13px;color:var(--gold);letter-spacing:.16em;margin-right:16px}
+.section .chev{color:var(--cream-45);font-family:var(--mono);font-size:16px}
+.section[open] .chev{color:var(--gold)}
+.section-body{padding:4px 4px 32px}
+.kv{margin:8px 0;font-size:14.5px;color:var(--cream-75);line-height:1.6}
+.kv b{color:var(--cream);font-weight:600}
+.metrics{display:flex;gap:48px;flex-wrap:wrap;padding:20px 0 24px}
+.metric .v{font-family:var(--serif);font-size:26px;color:var(--cream);line-height:1.2}
+.metric .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cream-45);margin-top:6px}
+.highlight-box{border-left:3px solid var(--gold);background:rgba(212,168,64,.08);padding:16px 18px;font-size:14.5px;color:var(--cream-75);margin-top:18px;line-height:1.6}
+.highlight-box .lead{color:var(--gold);font-family:var(--mono);font-size:12px;letter-spacing:.14em;display:block;margin-bottom:8px}
+ul.clean{list-style:none;margin:10px 0;padding-left:6px}
+ul.clean li{font-size:14.5px;color:var(--cream-75);line-height:1.7;padding-left:14px;position:relative}
+ul.clean li::before{content:"·";color:var(--gold);position:absolute;left:0;top:-3px;font-size:20px;line-height:1}
+.mix-strip{display:flex;border:var(--rule);margin:8px 0 26px;background:rgba(255,255,255,.02)}
+.mix{flex:1;text-align:center;padding:26px 10px;border-right:var(--rule)}
+.mix:last-child{border-right:0}
+.mix .pct{font-family:var(--serif);font-size:36px;color:var(--cream)}
+.mix .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--cream-45);margin-top:6px}
+table.theme{width:100%;border-collapse:collapse;margin-bottom:26px}
+table.theme th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--cream-45);font-weight:500;padding:12px 14px;border-bottom:var(--rule)}
+table.theme td{padding:16px 14px;vertical-align:top;border-bottom:var(--border-soft);font-size:14.5px;color:var(--cream-75);line-height:1.55}
+table.theme td.theme-name{color:var(--cream);width:220px;font-weight:500}
+table.theme td.share{color:var(--score);font-family:var(--serif);font-size:18px;width:80px}
+.signals{border:1px solid rgba(212,168,64,.5);background:rgba(212,168,64,.08);padding:18px 22px;margin-bottom:26px}
+.signals .cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--gold);margin-bottom:14px}
+.signals ul{list-style:none}
+.signals li{font-size:14.5px;line-height:1.7;color:var(--cream-75);padding-left:18px;position:relative;margin-bottom:4px}
+.signals li::before{content:"▸";color:var(--gold);position:absolute;left:0}
+.swot{display:flex;gap:42px}
+.swot .col{flex:1}
+.swot .cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;margin-bottom:14px}
+.swot .strengths .cap{color:var(--green)}
+.swot .gaps .cap{color:var(--terracotta)}
+.swot ul{list-style:none}
+.swot li{font-size:14.5px;line-height:1.7;color:var(--cream-75);padding-left:18px;position:relative;margin-bottom:6px}
+.swot .strengths li::before{content:"▸";color:var(--green);position:absolute;left:0}
+.swot .gaps li::before{content:"▸";color:var(--terracotta);position:absolute;left:0}
+.opp{border-top:3px solid var(--gold);background:var(--panel);padding:22px 24px;margin-bottom:18px}
+.opp h4{font-family:var(--serif);font-size:23px;color:var(--cream);margin-bottom:10px}
+.opp .col2{display:flex;gap:32px;margin:10px 0}
+.opp .col2 div{flex:1;font-size:14.5px;color:var(--cream-75);line-height:1.6}
+.opp .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cream-45);display:block;margin-bottom:6px}
+.opp .impact{color:var(--gold);font-size:14px;margin-top:12px;line-height:1.5}
+.src{font-family:var(--mono);font-size:13px;color:var(--cream-45);line-height:2}
+.src a{color:var(--cream-75);text-decoration:none;display:block}
+.src a:hover{color:var(--gold)}
+footer.legal{text-align:center;font-family:var(--mono);font-size:11px;color:var(--cream-45);padding:24px;border-top:var(--rule);letter-spacing:.1em}
+</style></head><body>
+
+<div class="app-header">
+  <span class="brand">PMP Intel</span>
+  <span class="product">PMP&nbsp;INTEL</span>
+  <span class="versions">v2.2.4 &nbsp;·&nbsp; pmp-score-v1</span>
+  <a class="btn-outline" href="industry_sweep_acoustic-guitar-manufacturers.html">&larr; SWEEP</a>
+</div>
+
+<div class="kpi-strip"><div class="kpi"><span class="num">10</span><span class="lbl"><span class="dot gold"></span> TOTAL PROSPECTS</span></div><div class="kpi"><span class="num">10</span><span class="lbl"><span class="dot green"></span> IN RESEARCH</span></div><div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot blue"></span> CONTACTED</span></div><div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot red"></span> ACTIVE</span></div></div>
+
+<div class="shell">
+  <aside class="sidebar"><a href="industry_sweep_acoustic-guitar-manufacturers.html" class="eyebrow" style="display:block;margin-bottom:18px">&larr; BACK TO SWEEP</a>
+<a class="mini" href="company_guild-guitars.html"><div class="mini-top"><span class="mini-name">Guild Guitars</span><span class="mini-score">78</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_breedlove-guitars.html"><div class="mini-top"><span class="mini-name">Breedlove Guitars</span><span class="mini-score">77</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_bourgeois-guitars.html"><div class="mini-top"><span class="mini-name">Bourgeois Guitars</span><span class="mini-score">75</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_larrivee-guitars.html"><div class="mini-top"><span class="mini-name">Larrivée Guitars</span><span class="mini-score">73</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_taylor-guitars.html"><div class="mini-top"><span class="mini-name">Taylor Guitars</span><span class="mini-score">72</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_eastman-guitars.html"><div class="mini-top"><span class="mini-name">Eastman Guitars</span><span class="mini-score">72</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<div class="mini active"><div class="mini-top"><span class="mini-name">Collings Guitars</span><span class="mini-score">68</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></div>
+<a class="mini" href="company_c-f-martin-and-co.html"><div class="mini-top"><span class="mini-name">C.F. Martin &amp; Co.</span><span class="mini-score">64</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_mcpherson-guitars.html"><div class="mini-top"><span class="mini-name">McPherson Guitars</span><span class="mini-score">64</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_lowden-guitars.html"><div class="mini-top"><span class="mini-name">Lowden Guitars</span><span class="mini-score">61</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a></aside>
+  <main class="main">
+    <div class="co-name">Collings Guitars</div>
+    <div class="co-sub">ACOUSTIC GUITAR MANUFACTURERS · collingsguitars.com</div>
+    <div class="co-score">
+      <span class="big">68<span style="font-size:24px;color:var(--cream-30)">/100</span></span>
+      <span class="verdict">STRONG PROSPECT</span>
+    </div>
+    <div class="subscores"><div class="subscore"><div class="v">7.8</div><div class="k">CREATIVE</div></div><div class="subscore"><div class="v">5.0</div><div class="k">BUDGET</div></div><div class="subscore"><div class="v">6.5</div><div class="k">GROWTH</div></div><div class="subscore"><div class="v">7.5</div><div class="k" title="⚠ definition unconfirmed — pending user decision">OTHER DAY ⚠</div></div></div>
+    <div class="headline">Tier-1 boutique brand with thin paid-marketing muscle and a fresh succession-and-pricing story that needs telling — a high-leverage creative + content engagement opportunity.</div>
+    <div class="actions">
+      <span class="tag stage">IN RESEARCH</span>
+      <span class="tag">RE-ANALYZE</span>
+      <span class="tag">DRAFT OUTREACH</span>
+      <span class="tag">ARCHIVE</span>
+    </div>
+    <details class="section" open><summary><span class="s-title"><span class="s-num">01</span>Company Overview</span><span class="chev">▾</span></summary><div class="section-body"><div class="metrics"><div class="metric"><div class="v">insufficient evidence (aggregator range $1.4M–$18.8M; Crunchbase &gt;$10M music bucket)</div><div class="k">REVENUE</div></div><div class="metric"><div class="v">~85–100</div><div class="k">EMPLOYEES</div></div><div class="metric"><div class="v">~1,100 acoustic + ~500 mandolins/yr (2006 baseline); 6–7 acoustics + 3 electrics + 2 mandolins + 2 ukuleles/day; 8–10 month custom lead time</div><div class="k">PRODUCTION</div></div><div class="metric"><div class="v">insufficient evidence</div><div class="k">MARKET SHARE</div></div></div><p style="color:var(--cream-45);font-size:13px">Collings Guitars is a privately held, founder-legacy boutique stringed-instrument manufacturer in Austin, TX. Founded by Bill Collings in 1973 in Houston and relocated to Austin in the mid-1980s, the company builds custom handmade acoustic guitars, electric guitars, archtops, mandolins, and a Waterloo-branded vintage-inspired sub-line. Bill Collings died July 14, 2017; the company continues under a leadership group including head luthier Steve Nall (joined 1999) and director of manufacturing Steve McNull. ~20,000 guitars produced since 1979 (NYT obituary); current 28,000-sq-ft facility employs nearly 100 (Texas Highways).</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">02</span>Ad Spend Estimation</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Signal band:</b> light</p>
+<p class="kv">Multiple converging signals: 2006 Austin Chronicle on the record — 'Collings has never even produced a sales brochure, let alone employed a publicist or set aside capital for an advertising and marketing budget'; dealer-only distribution shifts most paid demand-gen to ~70 US authorized retailers; no Meta Ad Library or paid-search creative was discoverable via Brave; Instagram (130K) is healthy but organically grown over ~15 years rather than amplified; LinkedIn following is small (733).</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">03</span>Performance Metrics</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Revenue Range:</b> $11M–$18.8M (aggregator-estimated; low confidence; Crunchbase places in &gt;$10M music bucket) <span style="color:var(--cream-30)">— rocketreach.co; leadiq.com; crunchbase.com</span></p>
+<p class="kv"><b>Founder Quoted Order Growth:</b> $2.5M more in orders YoY (founder-era quote) <span style="color:var(--cream-30)">— gov.texas.gov/music</span></p>
+<p class="kv"><b>Lifetime Units:</b> ~20,000 guitars produced since 1979 <span style="color:var(--cream-30)">— nytimes.com 2017 obituary</span></p>
+<p class="kv"><b>Annual Units:</b> ~1,100 acoustic guitars + ~500 mandolins/year (2006 baseline) <span style="color:var(--cream-30)">— austinchronicle.com 2006</span></p>
+<p class="kv"><b>Product Launches Recent:</b> Hill Country acoustic series (2024); Q Spruce optional tops (2025); C-00 flat top (2025); 71/71 M T-style electrics (NAMM 2025); DS1/DS2 A HC 12-fret dreadnoughts (2025); AT-00 Roundhole archtop (2025, limited 4); C10 Traditional; forthcoming 00-size prewar prototypes <span style="color:var(--cream-30)">— collingsguitars.com; acousticguitar.com 2025 roundup; acousticguitar.com Sept/Oct 2024 review</span></p>
+<p class="kv"><b>Pricing Trajectory:</b> Significant price increases over the last five years, reinvested in employee compensation <span style="color:var(--cream-30)">— adamperlmuttermusic.substack.com (Steve Nall, May 2026)</span></p>
+<p class="kv"><b>Social Followings:</b> Instagram 130K, Facebook 124K likes, LinkedIn 733 <span style="color:var(--cream-30)">— instagram.com; facebook.com; linkedin.com</span></p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">04</span>Funnel Architecture</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Acquisition:</b> Earned media + organic social (Instagram-led) + artist visibility (top-tier players unpaid) + dealer-network co-marketing. No discoverable paid acquisition.</p>
+<p class="kv"><b>Conversion Path:</b> Dealer-only. Discovery via social or artist context → collingsguitars.com → dealer locator (~70 US, ~14 international) → dealer holds inventory or takes custom order → 8–10 month lead → fulfillment via dealer.</p>
+<p class="kv"><b>Friction:</b></p><ul class="clean"><li>No DTC e-commerce; intentional scarcity but no buyer-journey telemetry</li><li>Long lead times (8–10 months) without visible nurture between order and ship</li><li>Email capture exists but no visible behavioral nurture flow</li><li>Limited owned-channel attribution because conversion happens at the dealer</li></ul>
+<p class="kv"><b>Channels:</b></p><ul class="clean"><li>Dealer retail (~70 US, ~14 international markets)</li><li>CS email for sourcing only (customerservice@collingsguitars.com)</li><li>Free Friday factory tours in Austin</li><li>Trade shows (NAMM, Fretboard Summit)</li></ul></div></details><details class="section"><summary><span class="s-title"><span class="s-num">05</span>Creative Strategy Analysis</span><span class="chev">▸</span></summary><div class="section-body"><div class="mix-strip"><div class="mix"><div class="pct">70%</div><div class="lbl">VIDEO</div></div><div class="mix"><div class="pct">20%</div><div class="lbl">STATIC</div></div><div class="mix"><div class="pct">10%</div><div class="lbl">CAROUSEL</div></div><div class="mix"><div class="pct">5%</div><div class="lbl">AB TESTING</div></div></div>
+<table class="theme"><thead><tr><th>THEME</th><th>SHARE</th><th>DESCRIPTION</th></tr></thead><tbody><tr><td class="theme-name">Artist Performance / Sponsored Sessions</td><td class="share">~40%</td><td>Long-form unedited performance videos with marquee players (Julian Lage, Chris Eldridge, Carl Miner, Jake Workman, Lyle Lovett). Instrument shown in-use; brand stays out of the way.</td></tr><tr><td class="theme-name">Shop &amp; Build Process (Snapshots from the Bench)</td><td class="share">~25%</td><td>Macro Instagram reels and YouTube shorts of luthiers scraping, sanding, carving, chiseling. Hashtag stack #CollingsGuitars #Handcrafted #Luthier.</td></tr><tr><td class="theme-name">Model Launch &amp; Spec Showcase</td><td class="share">~20%</td><td>New model walkthroughs (Hill Country, C-00, 71/71 M, 620, I-30 LC) on the homepage and channel; often co-produced with dealers.</td></tr><tr><td class="theme-name">Trade Show &amp; Dealer Co-marketing</td><td class="share">~10%</td><td>NAMM booth livestreams (2024, 2025) and dealer announcements (Banjo Ben's, Guitar Haus). Dealer-led rather than brand-led.</td></tr><tr><td class="theme-name">Founder Story / Documentary</td><td class="share">~5%</td><td>Single 'Instrumental' (2010) documentary plus D'Addario Work/Shop episode. Powerful but rarely refreshed.</td></tr></tbody></table>
+<div class="signals"><div class="cap">▸ WINNER SIGNALS</div><ul><li>'Instrumental' (2010) still serves as the lone founder-story explainer 15 years later — durable evergreen demand.</li><li>Artist sponsorship pairs (Lage + Eldridge) generate recurring sponsored content — high-credibility, low-cost amplification.</li><li>Hill Country (2024) launch carried by dealer demos with consistent 'vintage-inspired voice' messaging — repeatable playbook.</li><li>Instagram reels of in-shop hand-tool work are the most native content; 130K IG vs. 733 LinkedIn shows Instagram is doing the heavy lifting.</li></ul></div>
+<div class="swot"><div class="col strengths"><div class="cap">▸ STRENGTHS</div><ul><li>World-class artist roster deployed in-kind, not paid — extreme credibility per dollar.</li><li>Strong visual access to the shop floor and hand-finishing process.</li><li>Tagline ('Built from the Sound Up') is crisp, durable, consistently used across web, social, and dealer content.</li><li>Dealer ecosystem generates secondary demo content the brand inherits for free.</li></ul></div><div class="col gaps"><div class="cap">▸ WEAKNESSES / GAPS</div><ul><li>Founder story anchored to a single 2010 documentary; post-Bill succession narrative undertold.</li><li>Almost no 'why we're different' creative articulating positioning vs. Martin, Taylor, Santa Cruz, Bourgeois.</li><li>Hill Country launch messaging fragmented across dealer demos rather than a Collings-produced flagship video.</li><li>No discoverable A/B testing or paid social activity.</li><li>No creative narrative explaining or justifying significant recent price increases.</li><li>Mandolin, archtop, ukulele/Waterloo lines under-merchandised vs. acoustics and electrics.</li></ul></div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">06</span>Storytelling Diagnostic</span><span class="chev">▸</span></summary><div class="section-body"></div></details><details class="section"><summary><span class="s-title"><span class="s-num">07</span>Opportunities</span><span class="chev">▸</span></summary><div class="section-body"><div class="opp"><h4>Succession &amp; Steve Nall Story Arc</h4><div class="col2"><div><span class="lab">THE GAP</span>The post-Bill leadership story exists in a single substack interview; otherwise absent from owned channels. Heritage buyers care intensely and currently get no answer.</div><div><span class="lab">WHAT WE DELIVER</span>Documentary mini-series (3–5 episodes, owned channel) profiling Steve Nall, the wood-selection process, and post-2017 build-team continuity. Edited paid distribution on Instagram + YouTube.</div></div><div class="impact">Impact — Defends pricing power, neutralizes 'is Collings still Collings?' objections, refreshes the 2010 documentary for a new generation.</div></div>
+<div class="opp"><h4>Hill Country / Q Spruce Launch Playbook</h4><div class="col2"><div><span class="lab">THE GAP</span>Hill Country (2024) and Q Spruce (2025) launches were leaked to dealer demos without a Collings-owned canonical video; brand attribution is dispersed and the message varies dealer-to-dealer.</div><div><span class="lab">WHAT WE DELIVER</span>Per-launch flagship video + tightly-themed paid social burst + dealer co-op asset kit that ensures consistent messaging without losing dealer autonomy.</div></div><div class="impact">Impact — Compresses launch ramp, captures dealer demand into Collings-owned attribution, sets a repeatable playbook for C10 Traditional, forthcoming 00-size prewar prototypes, and any future Waterloo extension.</div></div>
+<div class="opp"><h4>Price-Justification Narrative</h4><div class="col2"><div><span class="lab">THE GAP</span>Per Steve Nall, Collings has raised prices significantly over five years and reinvested in employee compensation. The buyer has not been given this story — they only see the higher price.</div><div><span class="lab">WHAT WE DELIVER</span>A hero piece on what a Collings actually costs to build (people, time, woods) plus a quarterly cadence of shorter 'anatomy of a build' clips. Positions Collings as the ethical choice in a thinning American luthier labor pool.</div></div><div class="impact">Impact — Protects gross margin during price increases; converts price-sensitive shoppers into mission-aligned buyers; deepens pricing power vs. peers.</div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">08</span>Fit Assessment</span><span class="chev">▸</span></summary><div class="section-body"><div class="swot"><div class="col gaps"><div class="cap">▸ CURRENT STATE</div><ul><li>Strong tier-1 brand with thin paid-marketing muscle.</li><li>Dealer-dependent funnel with limited owned-channel telemetry.</li><li>Active organic social presence with limited testing or paid amplification.</li><li>Heritage / craftsmanship narrative carried mostly by the founder story (2010) and artist sponsorships.</li><li>Recent price increases not narratively defended to buyers.</li></ul></div><div class="col strengths"><div class="cap">▸ WHAT WE BRING</div><ul></ul></div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">09</span>Engagement Structure</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Suggested Structure:</b> Q1: succession documentary mini-series + flagship Hill Country / Q Spruce canonical pieces. Q2: price-justification hero + 'anatomy of a build' cadence. Q3: under-merchandised lines (mandolin, archtop, Waterloo). Q4: testing, paid-social scale-up, dealer co-op refresh.</p>
+<p class="kv"><b>Investment Framing:</b> Retainer + production model. Work is rooted in pieces Collings already implicitly owns (shop access, head luthier, artist roster); our value is structure, sequencing, distribution, and attribution. 'We don't teach Collings how to build guitars; we make sure the people who would love one know what they're looking at.'</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">10</span>Sources</span><span class="chev">▸</span></summary><div class="section-body"><div class="src"><a href="https://collingsguitars.com/">Collings Guitars — homepage</a><a href="https://collingsguitars.com/about/our-story/">Our Story | Collings Guitars</a><a href="https://collingsguitars.com/dealers/">Dealers | Collings Guitars</a><a href="https://collingsguitars.com/hill-country-series/">Hill Country Series | Collings Guitars</a><a href="https://collingsguitars.com/acoustic-series-comparison/">Acoustic Series Comparison</a><a href="https://collingsguitars.com/artists/">Artists | Collings Guitars</a><a href="https://en.wikipedia.org/wiki/Collings_Guitars">Collings Guitars — Wikipedia</a><a href="https://www.austinchronicle.com/music/2006-07-14/386439/">Austin Chronicle: Building the Perfect Beast</a><a href="https://gov.texas.gov/music/page/business-spotlight-collings-guitars">Texas Music Office: Business Spotlight</a><a href="https://www.nytimes.com/2017/07/28/business/obituary-bill-collings-dead-guitars.html">NYT obituary — Bill Collings</a><a href="https://texashighways.com/culture/tuneful-tour-collings-guitars/">Texas Highways: Tuneful Tour</a><a href="https://adamperlmuttermusic.substack.com/p/chasing-perfection-steve-nall-of">Chasing Perfection: Steve Nall of Collings Guitars (May 2026)</a><a href="https://acousticguitar.com/the-sounds-of-2025-guitars-and-gear-that-carried-the-acoustic-tradition-forward/">Acoustic Guitar 2025 year-end roundup</a><a href="https://acousticguitar.com/review-collings-om1a-hill-country/">Acoustic Guitar review: OM1A Hill Country</a><a href="https://www.tfoa.eu/en/blog/news-3/the-new-collings-hill-country-guitars-197">TFOA: The New Collings Hill Country Guitars</a><a href="https://www.instagram.com/collingsguitars/">Collings Guitars Instagram</a><a href="https://www.facebook.com/CollingsGuitars/">Collings Guitars Facebook</a><a href="https://www.linkedin.com/company/collingsguitars">Collings Guitars LinkedIn</a><a href="https://www.youtube.com/channel/UC0NTF5SC9qCqrYub70xaLSA">Collings Guitars YouTube channel</a><a href="https://rocketreach.co/collings-guitars-profile_b5d3536cf42e460a">RocketReach (aggregator, low confidence)</a><a href="https://leadiq.com/c/collings-guitars/5a1db6992300005200b1a614">LeadIQ (aggregator, low confidence)</a><a href="https://www.crunchbase.com/organization/collings-guitars">Crunchbase</a></div></div></details>
+  </main>
+</div>
+
+<footer class="legal">PMP INTEL · COMPANY SWEEP REVIEW · COLLINGS GUITARS · REPORT 9 · pmp-score-v1</footer>
+</body></html>

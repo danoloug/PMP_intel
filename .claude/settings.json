@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__brave-search__brave_web_search",
+      "mcp__brave-search__brave_news_search",
+      "mcp__pmp-sqlite__read_query",
+      "mcp__pmp-sqlite__describe_table",
+      "mcp__pmp-sqlite__list_tables",
+      "mcp__pmp-sqlite__write_query",
+      "mcp__pmp-sqlite__create_table"
+    ]
+  }
+}

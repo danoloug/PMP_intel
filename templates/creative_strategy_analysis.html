@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+  PMP Intel — VIEW 3: Creative Strategy Analysis
+  Spec: schema_md/UI_schema.md (View 3) · Visual: screen_shots/Creative Strategy Analysis.png
+  Data: report_sections WHERE section_key = 'creative_strategy' (content_json)
+        and analyses WHERE analyzer = 'creative_analyzer'
+
+  Renders standalone OR inlined as Section 05 of company_sweep_review.html.
+
+  TEMPLATE CONTRACT for pmp-html-renderer (content_json shape):
+    mix:      { video, static, carousel, ab_testing }  -- percentages
+    themes:   [ { name, share, description } ]
+    winner_signals: [ string ]
+    strengths:      [ string ]
+    gaps:           [ string ]
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PMP Intel — Creative Strategy Analysis</title>
+<link rel="stylesheet" href="pmp_theme.css">
+</head>
+<body>
+
+<main class="main" style="margin:0 auto;max-width:980px">
+
+  <div class="cs-head">
+    <span class="cs-title">Creative Strategy Analysis</span>
+    <a href="company_sweep_review.html" class="btn-outline">&larr; COMPANY OVERVIEW</a>
+  </div>
+
+  <!-- Creative mix: maps to content_json.mix -->
+  <div class="mix-strip">
+    <div class="mix"><div class="pct">70%</div><div class="lbl">VIDEO</div></div>
+    <div class="mix"><div class="pct">20%</div><div class="lbl">STATIC</div></div>
+    <div class="mix"><div class="pct">10%</div><div class="lbl">CAROUSEL</div></div>
+    <div class="mix"><div class="pct">25%</div><div class="lbl">A/B TESTING</div></div>
+  </div>
+
+  <!-- Theme share: {{#each themes}} -->
+  <table class="theme">
+    <thead><tr><th>THEME</th><th>SHARE</th><th>DESCRIPTION</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="theme-name">Technical Education Authority</td>
+        <td class="share">~50%</td>
+        <td>Two-Minute Tech series with Bob McGregor dominates content strategy, providing guitar-maintenance tutorials (capo usage, fret-buzz diagnosis, pickup optimization) that establish technical credibility. Emotionally neutral — pure instruction with no transformation narrative.</td>
+      </tr>
+      <tr>
+        <td class="theme-name">Artist Performance Showcase</td>
+        <td class="share">~30%</td>
+        <td>Artist collaboration content featuring musicians (Trey Hensley, Gabe Price, Molly Tuttle). Strong authentic performances, but missed opportunity for deeper storytelling about artists' journeys and why they chose Taylor.</td>
+      </tr>
+      <tr>
+        <td class="theme-name">Craftsmanship Heritage</td>
+        <td class="share">~20%</td>
+        <td>Factory-based craftsmanship content but completely absent of human stories — the craftspeople remain anonymous despite 1,200+ employees with compelling instrument-making pride and legacy.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Winner signals: {{#each winner_signals}} -->
+  <div class="signals">
+    <div class="cap">▸ WINNER SIGNALS · LONG-RUNNING & TOP-PERFORMING ADS</div>
+    <ul>
+      <li>YouTube subscriber base of 169K indicates strong appetite for longer-form educational content</li>
+      <li>Two-Minute Tech series builds genuine technical authority and trust with guitar owners</li>
+      <li>Artist-collaboration content shows authentic relationships versus typical endorsement advertising</li>
+      <li>Custom guitar showcases demonstrate manufacturing sophistication and premium positioning</li>
+    </ul>
+  </div>
+
+  <!-- Strengths vs. gaps -->
+  <div class="swot">
+    <div class="col strengths">
+      <div class="cap">▸ STRENGTHS</div>
+      <ul>
+        <li>Technical education content establishes expertise positioning versus generic guitar advertising</li>
+        <li>Artist-performance content demonstrates authentic musicianship and real instrument use cases</li>
+        <li>50th-anniversary content shows capability for historical brand-narrative development</li>
+        <li>Factory craftsmanship content effectively conveys manufacturing scale</li>
+      </ul>
+    </div>
+    <div class="col gaps">
+      <div class="cap">▸ WEAKNESSES / GAPS</div>
+      <ul>
+        <li>Bob Taylor / Kurt Listug founding story invisible in video content despite rich cinematic potential</li>
+        <li>Andy Powers innovation story and master-craftsman journey lacks human-centered narrative</li>
+        <li>Customer transformation stories remain entirely absent from creative</li>
+        <li>Employee-ownership (ESOP) narrative — a unique differentiator — is never told</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<footer class="legal">PMP INTEL · CREATIVE STRATEGY ANALYSIS · TAYLOR GUITARS · GENERATED {{generated_at}}</footer>
+</body>
+</html>

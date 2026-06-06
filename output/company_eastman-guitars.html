@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!-- PMP Intel · Company Sweep Review · rendered by output/_render_reports.py from pmp_intel.db (report 3) -->
+<html lang="en"><head><meta charset="utf-8"><title>PMP Intel — Eastman Guitars</title>
+<style>
+/* Theme v2 — readability pass: alphas bumped (0.30→0.62, 0.45→0.80, 0.75→0.94)
+   and font sizes increased (body 14→15.5, section text 12.5→14.5).
+   Brand identity intact: Obsidian (#141414) + Champagne (#d4a840) preserved. */
+:root{--bg:#141414;--panel:#1e1e1e;--panel-2:#242424;--gold:#d4a840;--score:#e8b347;
+--cream:#f5f0e8;--cream-75:rgba(245,240,232,.94);--cream-45:rgba(245,240,232,.80);
+--cream-30:rgba(245,240,232,.62);--border:rgba(255,255,255,.14);
+--border-soft:rgba(255,255,255,.09);--green:#7ec49a;--blue:#7da3c8;--terracotta:#e07c6c;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"DM Sans",-apple-system,sans-serif;
+--mono:"DM Mono","SF Mono",ui-monospace,monospace;--rule:1px solid var(--border);--pad:28px;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--cream-75);font-family:var(--sans);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);border-bottom:var(--rule)}
+.app-header .brand{font-variant:small-caps;letter-spacing:.12em;color:var(--cream-45);font-size:14px}
+.app-header .product{font-family:var(--mono);color:var(--gold);letter-spacing:.34em;font-size:16px}
+.app-header .versions{font-family:var(--mono);color:var(--cream-30);font-size:13px;letter-spacing:.08em}
+.btn-outline{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--cream-45);
+background:transparent;border:var(--rule);padding:9px 18px;cursor:pointer;text-decoration:none}
+.btn-outline:hover{color:var(--gold);border-color:var(--gold)}
+.kpi-strip{display:flex;align-items:center;border-bottom:var(--rule)}
+.kpi{display:flex;align-items:baseline;gap:10px;padding:16px var(--pad);border-right:var(--rule)}
+.kpi .num{font-size:28px;color:var(--cream);font-weight:500}
+.kpi .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--cream-45)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot.gold{background:var(--gold)}.dot.green{background:var(--green)}
+.dot.blue{background:var(--blue)}.dot.red{background:var(--terracotta)}
+.shell{display:flex;min-height:calc(100vh - 120px)}
+.sidebar{width:320px;flex:0 0 320px;border-right:var(--rule);padding:22px var(--pad);overflow-y:auto}
+.main{flex:1;padding:32px var(--pad);min-width:640px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--cream-45);margin-bottom:12px;display:block;text-decoration:none}
+.eyebrow:hover{color:var(--gold)}
+.mini{border-left:2px solid transparent;padding:14px 0 14px 14px;border-bottom:var(--border-soft);display:block;text-decoration:none}
+.mini.active{border-left-color:var(--gold)}
+.mini:hover{background:rgba(255,255,255,.03)}
+.mini-top{display:flex;justify-content:space-between;align-items:baseline}
+.mini-name{font-family:var(--serif);font-size:20px;color:var(--cream)}
+.mini-score{font-family:var(--serif);font-size:20px;color:var(--score)}
+.mini-meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--cream-30);margin:5px 0 6px}
+.mini-note{font-size:13.5px;color:var(--cream-45);line-height:1.5}
+.co-name{font-family:var(--serif);font-size:44px;color:var(--cream);line-height:1.1}
+.co-sub{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--cream-45);margin:8px 0 20px}
+.co-score{display:flex;align-items:baseline;gap:18px}
+.co-score .big{font-family:var(--serif);font-size:68px;color:var(--score);line-height:1}
+.co-score .verdict{font-family:var(--mono);font-size:13px;letter-spacing:.2em;color:var(--gold)}
+.subscores{display:flex;gap:42px;margin:20px 0 22px}
+.subscore .v{font-family:var(--serif);font-size:30px;color:var(--cream)}
+.subscore .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--cream-45)}
+.headline{font-family:var(--serif);font-size:20px;color:var(--cream-75);font-style:italic;margin-bottom:20px;max-width:820px;line-height:1.5}
+.actions{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;border:var(--rule);padding:8px 16px;color:var(--cream-45)}
+.tag.stage{color:var(--green);border-color:rgba(126,196,154,.5)}
+.section{border-top:var(--rule)}
+.section>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:22px 4px}
+.section>summary::-webkit-details-marker{display:none}
+.section .s-title{font-family:var(--serif);font-size:28px;color:var(--cream)}
+.section .s-num{font-family:var(--mono);font-size:13px;color:var(--gold);letter-spacing:.16em;margin-right:16px}
+.section .chev{color:var(--cream-45);font-family:var(--mono);font-size:16px}
+.section[open] .chev{color:var(--gold)}
+.section-body{padding:4px 4px 32px}
+.kv{margin:8px 0;font-size:14.5px;color:var(--cream-75);line-height:1.6}
+.kv b{color:var(--cream);font-weight:600}
+.metrics{display:flex;gap:48px;flex-wrap:wrap;padding:20px 0 24px}
+.metric .v{font-family:var(--serif);font-size:26px;color:var(--cream);line-height:1.2}
+.metric .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cream-45);margin-top:6px}
+.highlight-box{border-left:3px solid var(--gold);background:rgba(212,168,64,.08);padding:16px 18px;font-size:14.5px;color:var(--cream-75);margin-top:18px;line-height:1.6}
+.highlight-box .lead{color:var(--gold);font-family:var(--mono);font-size:12px;letter-spacing:.14em;display:block;margin-bottom:8px}
+ul.clean{list-style:none;margin:10px 0;padding-left:6px}
+ul.clean li{font-size:14.5px;color:var(--cream-75);line-height:1.7;padding-left:14px;position:relative}
+ul.clean li::before{content:"·";color:var(--gold);position:absolute;left:0;top:-3px;font-size:20px;line-height:1}
+.mix-strip{display:flex;border:var(--rule);margin:8px 0 26px;background:rgba(255,255,255,.02)}
+.mix{flex:1;text-align:center;padding:26px 10px;border-right:var(--rule)}
+.mix:last-child{border-right:0}
+.mix .pct{font-family:var(--serif);font-size:36px;color:var(--cream)}
+.mix .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--cream-45);margin-top:6px}
+table.theme{width:100%;border-collapse:collapse;margin-bottom:26px}
+table.theme th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--cream-45);font-weight:500;padding:12px 14px;border-bottom:var(--rule)}
+table.theme td{padding:16px 14px;vertical-align:top;border-bottom:var(--border-soft);font-size:14.5px;color:var(--cream-75);line-height:1.55}
+table.theme td.theme-name{color:var(--cream);width:220px;font-weight:500}
+table.theme td.share{color:var(--score);font-family:var(--serif);font-size:18px;width:80px}
+.signals{border:1px solid rgba(212,168,64,.5);background:rgba(212,168,64,.08);padding:18px 22px;margin-bottom:26px}
+.signals .cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--gold);margin-bottom:14px}
+.signals ul{list-style:none}
+.signals li{font-size:14.5px;line-height:1.7;color:var(--cream-75);padding-left:18px;position:relative;margin-bottom:4px}
+.signals li::before{content:"▸";color:var(--gold);position:absolute;left:0}
+.swot{display:flex;gap:42px}
+.swot .col{flex:1}
+.swot .cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;margin-bottom:14px}
+.swot .strengths .cap{color:var(--green)}
+.swot .gaps .cap{color:var(--terracotta)}
+.swot ul{list-style:none}
+.swot li{font-size:14.5px;line-height:1.7;color:var(--cream-75);padding-left:18px;position:relative;margin-bottom:6px}
+.swot .strengths li::before{content:"▸";color:var(--green);position:absolute;left:0}
+.swot .gaps li::before{content:"▸";color:var(--terracotta);position:absolute;left:0}
+.opp{border-top:3px solid var(--gold);background:var(--panel);padding:22px 24px;margin-bottom:18px}
+.opp h4{font-family:var(--serif);font-size:23px;color:var(--cream);margin-bottom:10px}
+.opp .col2{display:flex;gap:32px;margin:10px 0}
+.opp .col2 div{flex:1;font-size:14.5px;color:var(--cream-75);line-height:1.6}
+.opp .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cream-45);display:block;margin-bottom:6px}
+.opp .impact{color:var(--gold);font-size:14px;margin-top:12px;line-height:1.5}
+.src{font-family:var(--mono);font-size:13px;color:var(--cream-45);line-height:2}
+.src a{color:var(--cream-75);text-decoration:none;display:block}
+.src a:hover{color:var(--gold)}
+footer.legal{text-align:center;font-family:var(--mono);font-size:11px;color:var(--cream-45);padding:24px;border-top:var(--rule);letter-spacing:.1em}
+</style></head><body>
+
+<div class="app-header">
+  <span class="brand">PMP Intel</span>
+  <span class="product">PMP&nbsp;INTEL</span>
+  <span class="versions">v2.2.4 &nbsp;·&nbsp; pmp-score-v1</span>
+  <a class="btn-outline" href="industry_sweep_acoustic-guitar-manufacturers.html">&larr; SWEEP</a>
+</div>
+
+<div class="kpi-strip"><div class="kpi"><span class="num">10</span><span class="lbl"><span class="dot gold"></span> TOTAL PROSPECTS</span></div><div class="kpi"><span class="num">10</span><span class="lbl"><span class="dot green"></span> IN RESEARCH</span></div><div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot blue"></span> CONTACTED</span></div><div class="kpi"><span class="num">0</span><span class="lbl"><span class="dot red"></span> ACTIVE</span></div></div>
+
+<div class="shell">
+  <aside class="sidebar"><a href="industry_sweep_acoustic-guitar-manufacturers.html" class="eyebrow" style="display:block;margin-bottom:18px">&larr; BACK TO SWEEP</a>
+<a class="mini" href="company_guild-guitars.html"><div class="mini-top"><span class="mini-name">Guild Guitars</span><span class="mini-score">78</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_breedlove-guitars.html"><div class="mini-top"><span class="mini-name">Breedlove Guitars</span><span class="mini-score">77</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_bourgeois-guitars.html"><div class="mini-top"><span class="mini-name">Bourgeois Guitars</span><span class="mini-score">75</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_larrivee-guitars.html"><div class="mini-top"><span class="mini-name">Larrivée Guitars</span><span class="mini-score">73</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_taylor-guitars.html"><div class="mini-top"><span class="mini-name">Taylor Guitars</span><span class="mini-score">72</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<div class="mini active"><div class="mini-top"><span class="mini-name">Eastman Guitars</span><span class="mini-score">72</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></div>
+<a class="mini" href="company_collings-guitars.html"><div class="mini-top"><span class="mini-name">Collings Guitars</span><span class="mini-score">68</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_c-f-martin-and-co.html"><div class="mini-top"><span class="mini-name">C.F. Martin &amp; Co.</span><span class="mini-score">64</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_mcpherson-guitars.html"><div class="mini-top"><span class="mini-name">McPherson Guitars</span><span class="mini-score">64</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a>
+<a class="mini" href="company_lowden-guitars.html"><div class="mini-top"><span class="mini-name">Lowden Guitars</span><span class="mini-score">61</span></div><div class="mini-meta">IN_RESEARCH · ACOUSTIC GUITAR MANUFACTURERS</div></a></aside>
+  <main class="main">
+    <div class="co-name">Eastman Guitars</div>
+    <div class="co-sub">ACOUSTIC GUITAR MANUFACTURERS · eastmanguitars.com</div>
+    <div class="co-score">
+      <span class="big">72<span style="font-size:24px;color:var(--cream-30)">/100</span></span>
+      <span class="verdict">STRONG PROSPECT</span>
+    </div>
+    <div class="subscores"><div class="subscore"><div class="v">7.8</div><div class="k">CREATIVE</div></div><div class="subscore"><div class="v">6.0</div><div class="k">BUDGET</div></div><div class="subscore"><div class="v">7.5</div><div class="k">GROWTH</div></div><div class="subscore"><div class="v">7.0</div><div class="k" title="⚠ definition unconfirmed — pending user decision">OTHER DAY ⚠</div></div></div>
+    <div class="headline">Story-rich, story-poor: Eastman has a category-defining Beijing-workshop narrative the brand has never filmed - and a third-party explainer is already breaking through telling it for them. Sustained growth cadence + multi-brand parent + recent Bourgeois/Kauffmann/FullerTone news create a present-moment hook.</div>
+    <div class="actions">
+      <span class="tag stage">IN RESEARCH</span>
+      <span class="tag">RE-ANALYZE</span>
+      <span class="tag">DRAFT OUTREACH</span>
+      <span class="tag">ARCHIVE</span>
+    </div>
+    <details class="section" open><summary><span class="s-title"><span class="s-num">01</span>Company Overview</span><span class="chev">▾</span></summary><div class="section-body"><div class="metrics"><div class="metric"><div class="v">insufficient evidence - third-party estimates range widely: Buzzfile $24.5M (US wholesale entity only); LeadIQ $100M-$1B range with unverified $750M July 2025 figure; parent revenue undisclosed</div><div class="k">REVENUE</div></div><div class="metric"><div class="v">~250+ in Beijing workshops as of 2014; ~70 US-side (Buzzfile); current global headcount not publicly disclosed</div><div class="k">EMPLOYEES</div></div><div class="metric"><div class="v">Hand-built in two Beijing workshops; volume not publicly disclosed; multi-line across acoustic, electric, mandolin, classical, gypsy-jazz</div><div class="k">PRODUCTION</div></div><div class="metric"><div class="v">insufficient evidence - private company in fragmented handcrafted-guitar segment</div><div class="k">MARKET SHARE</div></div></div><p style="color:var(--cream-45);font-size:13px">Eastman Guitars is the guitar division of Eastman Music Company, a privately-held musical instrument maker founded in 1992 by Qian Ni, a Beijing-born flutist who started the business out of the back of his car after graduating from Boston University School of Music. The company began as an importer/maker of violins, violas and cellos using traditional 19th-century European workshop methods, then progressively expanded into archtop guitars and mandolins (2002), steel-string acoustic flat-tops (2008), thinline electrics (2012), and solidbody electrics (2016). Parent Eastman Music Company is now a multi-brand house that includes Eastman Strings, Eastman Winds, Wm. S. Haynes (flutes, est. 1888), S.E. Shires, Backun Musical Services and (since 2019) Bourgeois Guitars. Guitars are hand-built in Beijing workshops using primarily hand tools and a few band saws; final inspection and setup happens in San Luis Obispo / Pomona, California. Eastman occupies a distinctive market niche: handcrafted, all-solid-wood instruments at price points well below comparable Martin/Gibson/Collings builds, positioned as a serious alternative for working professionals and high-end hobbyists.</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">02</span>Ad Spend Estimation</span><span class="chev">▸</span></summary><div class="section-body"><ul class="clean"><li>YouTube (organic + dealer-demo amplification)</li><li>Instagram (organic + occasional sweepstakes activations)</li><li>Facebook (organic announcements)</li><li>Trade-show PR (NAMM, Guitar Summit)</li><li>Print/digital press placements (Guitar World, MusicRadar, Guitarist magazine)</li><li>Artist endorsement program</li></ul></div></details><details class="section"><summary><span class="s-title"><span class="s-num">03</span>Performance Metrics</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Revenue:</b> Parent revenue undisclosed; US entity estimated $24.5M (Buzzfile); third-party aggregator LeadIQ estimates $100M-$1B range <span style="color:var(--cream-30)">— buzzfile.com; leadiq.com - wide-range third-party estimates</span></p>
+<p class="kv"><b>Employees:</b> ~250+ Beijing workshop staff (2014); ~70 US-side employees <span style="color:var(--cream-30)">— kauffmannsguitarstore.com; buzzfile.com</span></p>
+<p class="kv"><b>Growth Signals:</b> Consistent NAMM model launches 2022-2026 (Juliet, D'Ambrosio Series, FullerTone, FullerTone Offset '62, SB55 Olive Drab/Juliet NYC, T64-T, Kauffmann Series, Lady Moon Octave Mandolin); 2019 Bourgeois Guitars acquisition; international expansion (recent Argentina market entry per Instagram); 30-year anniversary press coverage in 2022 <span style="color:var(--cream-30)">— guitarworld.com; guitar.com; instagram.com; bourgeoisguitars.com</span></p>
+<p class="kv"><b>Traction:</b> Authorized-dealer network across US, Europe, and select international markets including Sweetwater, Guitar Center, Chicago Music Exchange, The Acoustic Shoppe (self-described #1 worldwide dealer), Music Zoo, Mill River, LA Guitar Sales, Victor Litz; instruments used by working artists on national tours <span style="color:var(--cream-30)">— eastmanguitars.com/dealers; theacousticshoppe.com; chicagomusicexchange.com; sweetwater.com</span></p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">04</span>Funnel Architecture</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Acquisition:</b> Top-of-funnel is driven by: (1) press reviews in major guitar media (Guitar World, MusicRadar, Premier Guitar, Guitarist magazine), (2) dealer demo videos on YouTube, (3) NAMM trade-show debuts, (4) artist endorsement social posts, (5) #iplayeastman community UGC, (6) word-of-mouth on guitar forums (Reddit r/Guitar, r/EastmanGuitarOwners, AGF, UMGF).</p>
+<p class="kv"><b>Conversion Path:</b> Eastman runs a pure dealer-network funnel - no DTC checkout on eastmanguitars.com. Site offers product detail pages, FAQ, and a dealer locator (US + Europe). Customers convert at authorized dealers either in-store or via dealer e-commerce (Sweetwater, Chicago Music Exchange, The Acoustic Shoppe, Music Zoo).</p>
+<p class="kv"><b>Friction:</b></p><ul class="clean"><li>No DTC means Eastman cannot capture first-party purchase data, customer email at purchase, or remarketing audiences</li><li>Dealer locator is functional but discovery-heavy - customers must drive deeper into the funnel before seeing inventory</li><li>Newsletter signup is the only first-party lead capture on the site - underutilized</li><li>No discoverable lifecycle/email nurture program for prospects who don't convert immediately</li></ul>
+<p class="kv"><b>Channels:</b></p><ul class="clean"><li>Wholesale to authorized dealers (primary)</li><li>Dealer e-commerce (secondary)</li><li>Sub-brand Bourgeois distributed through Eastman internationally</li><li>No direct-to-consumer storefront</li></ul></div></details><details class="section"><summary><span class="s-title"><span class="s-num">05</span>Creative Strategy Analysis</span><span class="chev">▸</span></summary><div class="section-body"><div class="mix-strip"><div class="mix"><div class="pct">75%</div><div class="lbl">VIDEO</div></div><div class="mix"><div class="pct">20%</div><div class="lbl">STATIC</div></div><div class="mix"><div class="pct">5%</div><div class="lbl">CAROUSEL</div></div><div class="mix"><div class="pct">10%</div><div class="lbl">AB TESTING</div></div></div>
+<table class="theme"><thead><tr><th>THEME</th><th>SHARE</th><th>DESCRIPTION</th></tr></thead><tbody><tr><td class="theme-name">Product Demos &amp; Model Showcases</td><td class="share">~55%</td><td>Dealer- and press-driven model demos (E20D-TC, E1D, Juliet, SB59, FullerTone Offset). Functional, gear-focused, tone-comparison content - the dominant Eastman creative format.</td></tr><tr><td class="theme-name">NAMM / Trade Show Reveals</td><td class="share">~20%</td><td>Annual NAMM (2022, 2023, 2024) and Guitar Summit booth walkthroughs and new-model debuts. Heavy reliance on third-party press channels (Premier Guitar) to do the storytelling.</td></tr><tr><td class="theme-name">Artist Endorsement &amp; UGC</td><td class="share">~15%</td><td>Featured artists (Peter Stroud, Suzanne Santo, Jonathan Wilson, Shawn Tubbs, Frank Vignola) and #iplayeastman UGC. Underdeveloped vs. the artist roster they actually have.</td></tr><tr><td class="theme-name">Behind-the-Scenes Craft</td><td class="share">~10%</td><td>Limited Instagram peeks into the Beijing workshop and luthier work. Big asset opportunity that is currently under-leveraged.</td></tr></tbody></table>
+<div class="signals"><div class="cap">▸ WINNER SIGNALS</div><ul><li>Third-party explainer 'How Eastman Guitars is Winning - And Why Big Brands Should Take Notes' resonates as a category narrative - the brand's story is going viral via others, not via Eastman</li><li>NAMM debut format reliably generates press coverage and dealer demo follow-on content</li><li>Dealer-led demos consistently outperform brand-owned content in reach</li><li>Hashtag #iplayeastman is active across IG, TikTok and Facebook - community-led identity has real adoption</li></ul></div>
+<div class="swot"><div class="col strengths"><div class="cap">▸ STRENGTHS</div><ul><li>Consistent product-launch cadence with reliable dealer/press amplification</li><li>Strong artist roster used as social proof</li><li>Owned social ecosystem present on all major channels with a unifying #iplayeastman tag</li><li>Sub-brand storytelling via Bourgeois Guitars collaboration adds high-end credibility</li></ul></div><div class="col gaps"><div class="cap">▸ WEAKNESSES / GAPS</div><ul><li>Founder story (Qian Ni, Beijing flutist, 'back of a car' beginning) is documented in press but absent from Eastman's own video creative</li><li>Beijing workshop / 19th-century-violin-craft process has no cinematic brand-owned creative asset</li><li>Heavy dependence on dealer/press channels for demo content</li><li>Active community hashtag but little story-driven Reels/short-form</li><li>No discoverable A/B-tested paid social</li><li>Artist roster treated as static endorsement list rather than ongoing content series</li><li>No founder/CEO-led thought-leadership content</li><li>Sweepstakes-style activations are infrequent and one-shot</li></ul></div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">06</span>Storytelling Diagnostic</span><span class="chev">▸</span></summary><div class="section-body"><div class="swot"><div class="col strengths"><div class="cap">▸ WORKING</div><ul><li>Authentic founder story exists and is rich with cinematic detail (immigrant flutist, back-of-the-car beginnings, 19th-century-Beijing-workshop methods, 30 years to global brand)</li><li>Strong artist proof points across genres (Sheryl Crow band, jazz session players, Americana, indie)</li><li>Bourgeois acquisition reinforces a 'craft acquires craft' narrative</li><li>#iplayeastman community has organic energy</li></ul></div><div class="col gaps"><div class="cap">▸ MISSING</div><ul><li>Eastman is not the primary teller of its own most powerful story - the Beijing workshop</li><li>No serialized founder/origin documentary content; the story is told once on a Vision page rather than as living video</li><li>No artist story series - the roster is listed but not filmed, interviewed, or followed</li><li>No category-defining manifesto piece - the 'why we exist' narrative is implied, never stated as creative</li><li>Sub-brand stories (Bourgeois, Haynes, Shires, Backun) are siloed - the family-of-craft narrative is not woven across them</li></ul></div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">07</span>Opportunities</span><span class="chev">▸</span></summary><div class="section-body"><div class="opp"><h4>Beijing Workshop Documentary Series</h4><div class="col2"><div><span class="lab">THE GAP</span>Eastman's biggest differentiator (hand-built in a 19th-century-style violin workshop in Beijing) has no first-party cinematic creative. Press and dealers describe it; Eastman doesn't show it.</div><div><span class="lab">WHAT WE DELIVER</span>A 3-5 episode mini-doc series filmed in the Beijing workshop: master luthiers at their benches, hand-scalloped bracing, the antique-varnish process, the tap-tuning ritual. 1 hero film + cut-downs for IG Reels, YouTube Shorts, paid-social hooks.</div></div><div class="impact">Impact — Owns the differentiator narrative; creates a year of evergreen creative; doubles or triples qualified top-of-funnel traffic to dealers; enables Eastman to compete on story (not just price) against Martin/Gibson/Collings.</div></div>
+<div class="opp"><h4>Founder + Artist Story Series</h4><div class="col2"><div><span class="lab">THE GAP</span>Qian Ni's immigrant-luthier journey and the working-artist roster (Stroud, Santo, Wilson, Vignola, Tubbs) are static assets on the site. They could be the most-shared content in the category.</div><div><span class="lab">WHAT WE DELIVER</span>Episodic 'Why I Play Eastman' artist-portrait series (3-5 min each) + a founder origin film. Bundled with a redesigned artists page, podcast-style audio cuts, and a quarterly content calendar.</div></div><div class="impact">Impact — Converts a static endorsement program into ongoing PR, social, and SEO equity; gives dealers and press a steady flow of co-marketable content; builds the lifecycle nurture asset Eastman currently lacks.</div></div>
+<div class="opp"><h4>DTC Lead-Capture + Lifecycle Engine</h4><div class="col2"><div><span class="lab">THE GAP</span>No DTC checkout means no first-party purchase data, but the site captures only a passive newsletter signup. Customers visit, browse, leave, and Eastman has nothing to remarket to.</div><div><span class="lab">WHAT WE DELIVER</span>Lead-capture redesign (gated dealer-locator, model-comparison wizard, 'build my Eastman' configurator email), a 6-touch nurture journey, and a CRM segmentation model that hands warm leads to specific dealers. Paired with a Meta/YouTube paid layer once owned content is in place.</div></div><div class="impact">Impact — Creates the missing middle of the funnel; gives Eastman a measurable acquisition channel for the first time; protects dealer relationships while adding brand-level demand signal.</div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">08</span>Fit Assessment</span><span class="chev">▸</span></summary><div class="section-body"><div class="swot"><div class="col gaps"><div class="cap">▸ CURRENT STATE</div><ul><li>Story-rich brand with story-poor creative output</li><li>Dependent on third-party press and dealers to do the storytelling</li><li>No first-party demand-capture funnel</li><li>Episodic, not always-on, social activations</li><li>Sub-brand portfolio (Eastman, Bourgeois, Haynes, Shires, Backun) lacks integrated narrative</li><li>Strong but underutilized artist roster</li></ul></div><div class="col strengths"><div class="cap">▸ WHAT WE BRING</div><ul></ul></div></div></div></details><details class="section"><summary><span class="s-title"><span class="s-num">09</span>Engagement Structure</span><span class="chev">▸</span></summary><div class="section-body"><p class="kv"><b>Suggested Structure:</b> Phase 1 (60 days): Strategic discovery + creative audit + Beijing workshop story sprint planning. Phase 2 (90-120 days): Production - workshop documentary series + 3-5 artist portrait films + founder origin piece. Phase 3 (ongoing, quarterly retainer): Content calendar execution, paid amplification testing, lifecycle/CRM build-out, quarterly campaign cycle.</p>
+<p class="kv"><b>Investment Framing:</b> A retainer-and-project hybrid: a Phase-1/2 production block to build the asset library Eastman needs, followed by a quarterly retainer to operate the engine. Scaled to a multi-brand house at Eastman's revenue tier, this is not a vendor relationship - it is a marketing-partner relationship at brand-team scale. Specific investment levels to be scoped against current internal marketing capacity (not publicly disclosed) and the priority of the three opportunities above.</p></div></details><details class="section"><summary><span class="s-title"><span class="s-num">10</span>Sources</span><span class="chev">▸</span></summary><div class="section-body"><div class="src"><a href="https://www.eastmanguitars.com/">Eastman Guitars - Home</a><a href="https://www.eastmanguitars.com/vision">Vision - Eastman Guitars</a><a href="https://www.eastmanguitars.com/dealers/">Dealers - Eastman Guitars</a><a href="https://www.eastmanguitars.com/eastmanlovesongs">Play to Win - Eastman Guitars (sweepstakes)</a><a href="https://www.eastmanguitars.com/artists">Artists - Eastman Guitars</a><a href="https://www.guitarworld.com/features/30-years-eastman-guitars">30 Years of Eastman: revisiting the golden age of handcrafted guitar making</a><a href="https://www.kauffmannsguitarstore.com/eastman-guitars/">Eastman Guitars - Kauffmann's Guitar Store</a><a href="https://www.buzzfile.com/business/Eastmans-Guitars-909-868-1777">Eastman Music Company - Buzzfile</a><a href="https://leadiq.com/c/eastman-music-company/5a1d854a24000024005fd2fb">Eastman Music Company - LeadIQ</a><a href="https://msretailer.com/saul-friedgood-president-eastman-music-company/">Saul Friedgood: President, Eastman Music Company - MS Retailer</a><a href="https://bourgeoisguitars.com/bourgeois-eastman-collaboration-update/">Bourgeois / Eastman Collaboration Update</a><a href="https://guitar.com/news/gear-news/eastman-kauffman-series/">Eastman Kauffmann Series launch</a><a href="https://www.musicradar.com/guitars/electric-guitars/eastman-fullertone-offset-review">Eastman FullerTone Offset '62 review - MusicRadar</a><a href="https://www.guitarworld.com/gear/electric-guitars/eastman-fullertone-offset-62-review">FullerTone Offset '62 review - Guitar World</a><a href="https://www.alamomusic.com/blogs/whats-new/we-finally-got-eastman-guitars-e20d-tc-and-e20om-tc-full-review-and-demo">E20D-TC and E20OM-TC Full Review - Alamo Music</a><a href="https://www.instagram.com/eastmanguitars/">@eastmanguitars Instagram</a><a href="https://www.youtube.com/channel/UCNlr_NpuGcvmSqGPrvmqlLQ">Eastman official YouTube channel</a><a href="https://www.facebook.com/EastmanGuitars/">Eastman Guitars Facebook</a><a href="https://midwoodguitarstudio.com/blog/eastman-guitars/">Eastman Guitars: A 19th Century Violin Workshop in Beijing</a><a href="https://theacousticshoppe.com/a/blog/eastman-guitars-handmade-quality-from-the-1-dealer">Eastman Guitars: Handmade Quality From the #1 Dealer</a></div></div></details>
+  </main>
+</div>
+
+<footer class="legal">PMP INTEL · COMPANY SWEEP REVIEW · EASTMAN GUITARS · REPORT 3 · pmp-score-v1</footer>
+</body></html>
